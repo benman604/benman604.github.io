@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Benjamin Man</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style type="text/css">
+
+    .hidden.menu {
+      display: none;
+    }
+
+    .masthead.segment {
+      min-height: 700px;
+      padding: 1em 0em;
+    }
+    .masthead .logo.item img {
+      margin-right: 1em;
+    }
+    .masthead .ui.menu .ui.button {
+      margin-left: 0.5em;
+    }
+    .masthead h1.ui.header {
+      margin-top: 3em;
+      margin-bottom: 0em;
+      font-size: 4em;
+      font-weight: normal;
+    }
+    .masthead h2 {
+      font-size: 1.7em;
+      font-weight: normal;
+    }
+
+    .ui.vertical.stripe {
+      padding: 8em 0em;
+    }
+    .ui.vertical.stripe h3 {
+      font-size: 2em;
+    }
+    .ui.vertical.stripe .button + h3,
+    .ui.vertical.stripe p + h3 {
+      margin-top: 3em;
+    }
+    .ui.vertical.stripe .floated.image {
+      clear: both;
+    }
+    .ui.vertical.stripe p {
+      font-size: 1.33em;
+    }
+    .ui.vertical.stripe .horizontal.divider {
+      margin: 3em 0em;
+    }
+
+    .quote.stripe.segment {
+      padding: 0em;
+    }
+    .quote.stripe.segment .grid .column {
+      padding-top: 5em;
+      padding-bottom: 5em;
+    }
+
+    .footer.segment {
+      padding: 5em 0em;
+    }
+
+    .secondary.pointing.menu .toc.item {
+      display: none;
+    }
+
+    @media only screen and (max-width: 700px) {
+      .ui.fixed.menu {
+        display: none !important;
+      }
+      .secondary.pointing.menu .item,
+      .secondary.pointing.menu .menu {
+        display: none;
+      }
+      .secondary.pointing.menu .toc.item {
+        display: block;
+      }
+      .masthead.segment {
+        min-height: 350px;
+      }
+      .masthead h1.ui.header {
+        font-size: 2em;
+        margin-top: 1.5em;
+      }
+      .masthead h2 {
+        margin-top: 0.5em;
+        font-size: 1.5em;
+      }
+    }
+
+    .backgrounded{
+      background-image: url('images/bkg2.svg') !important;
+      background-size: cover !important;
+      background-position: center !important;
+    }
+
+    img{
+      width:100%;
+      height:auto;
+    }
+
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+  $(document)
+    .ready(function() {
+
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+
+    })
+  ;
+  </script>
+</head>
+<body>
+
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="item" href="https://github.com/benman604" target="_blank"><i class="fa-brands fab fa-github"></i></a>
+    <a class="item" href="https://benjamin-man.itch.io/" target="_blank"><i class="fa-brands fab fa-itch-io"></i></a>
+    <a class="item" href="https://www.youtube.com/channel/UCttQGQE5lg9vOBdDMSe2rLA" target="_blank"><i class="fa-brands fab fa-youtube"></i></a>
+    <a class="item" href="mailto:benman604@outlook.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    <a class="item" href="#" target="_blank"><i class="fas fa-file-code"></i></a>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+    <a class="item" href="https://github.com/benman604" target="_blank"><i class="fa-brands fab fa-github"></i>  Github</a>
+    <a class="item" href="https://benjamin-man.itch.io/" target="_blank"><i class="fa-brands fab fa-itch-io"></i>  Itch.io</a>
+    <a class="item" href="https://www.youtube.com/channel/UCttQGQE5lg9vOBdDMSe2rLA" target="_blank"><i class="fa-brands fab fa-youtube"></i>  Youtube</a>
+    <a class="item" href="mailto:benman604@outlook.com" target="_blank"><i class="fas fa-envelope"></i>  Email</a>
+    <a class="item" href="#" target="_blank"><i class="fas fa-file-code"></i>  Source Code</a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment backgrounded">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu" style="border:none !important">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="item" href="https://github.com/benman604" target="_blank"><i class="fa-brands fab fa-github"></i></a>
+        <a class="item" href="https://benjamin-man.itch.io/" target="_blank"><i class="fa-brands fab fa-itch-io"></i></a>
+        <a class="item" href="https://www.youtube.com/channel/UCttQGQE5lg9vOBdDMSe2rLA" target="_blank"><i class="fa-brands fab fa-youtube"></i></a>
+        <a class="item" href="mailto:benman604@outlook.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        <a class="item" href="#" target="_blank"><i class="fas fa-file-code"></i></a>
+      </div>
+    </div>
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        <strong>Benjamin Man</strong>
+      </h1>
+      <h2><i>Maker of random stuff</i></h2>
+    </div>
+
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">Hey there. I'm Ben.</h3>
+          <p>Throughout the pandemic I've had a lot of time to dab around on random stuff on my computer. I've experimented with game development, creative coding, web development, graphic design, and a couple of other random stuff. This website showcases some of the random stuff I've made over the past couple years, as well as stuff I'm working on right now.</p>
+        </div>
+        <div class="six wide right floated column">
+          <div id="topcanvas"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui text container">
+
+
+      <h3 class="ui header">Snake 3D</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">Unity</div>
+        <div class="horizontal ui purple label">C#</div>
+      </div>
+      <img src="images/snake3d.PNG" alt="Screenshot" class="ui image rounded"> <br><br>
+      <a class="ui large button" href="https://benjamin-man.itch.io/snake-3d" target="_blank">Try it</a>
+
+
+      <h3 class="ui header">Firefox CSS</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">CSS</div>
+        <div class="horizontal ui purple label">Illustrator</div>
+      </div>
+      <img src="images/customfirefox_screenshot.PNG" alt="Screenshot" class="ui image rounded"> <br><br>
+      <a class="ui large button" href="https://github.com/benman604/userChrome.css" target="_blank">Try it</a>
+
+      <h3 class="ui header">3D Music Visualizer</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">Python</div>
+        <div class="horizontal ui purple label">Flask</div>
+        <div class="horizontal ui purple label">youtube-dl</div>
+        <div class="horizontal ui purple label">JavaScript</div>
+        <div class="horizontal ui purple label">p5.js</div>
+      </div>
+      <img src="images/3dmusic.PNG" alt="Screenshot" class="ui image rounded"> <br><br>
+      <a class="ui large button" href="https://music.benman604.repl.co" target="_blank">Try it</a>
+
+      <h3 class="ui header">Craft 3D</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">Unity</div>
+        <div class="horizontal ui purple label">C#</div>
+      </div>
+      <img src="images/triangle (2).png" alt="Screenshot" class="ui image rounded"> <br><br>
+      <a class="ui large button" href="https://benjamin-man.itch.io/craftdestroy-webgl" target="_blank">Try it</a>
+
+      <h3 class="ui header">Search Engine</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">Python</div>
+        <div class="horizontal ui purple label">Flask</div>
+        <div class="horizontal ui purple label">Milligram.CSS</div>
+      </div>
+      <img src="images/search.PNG" alt="Screenshot" class="ui image rounded"> <br><br>
+      <a class="ui large button" href="https://zebu.benjaminman.repl.co/" target="_blank">Try it</a>
+
+      <h3 class="ui header">Game of Life</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">Python</div>
+        <div class="horizontal ui purple label">Tkynter</div>
+      </div>
+      <img src="images/gameoflife.gif" alt="Screenshot" class="ui image rounded"> <br><br>
+      <a class="ui large button" href="https://github.com/benman604/Game-of-Life" target="_blank">Try it</a>
+
+      <h3 class="ui header">KRAZE!</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">Construct 3</div>
+        <div class="horizontal ui purple label">JavaScript</div>
+      </div>
+      <img src="images/KRAZE.PNG" alt="Screenshot" class="ui image rounded"> <br><br>
+      <a class="ui large button" href="https://play.google.com/store/apps/details?id=com.benjaminman.kraze" target="_blank">Try it</a>
+
+      <h3 class="ui header">To Do List</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">JavaScript</div>
+        <div class="horizontal ui purple label">JQuery</div>
+      </div>
+      <a class="ui large button" href="https://benman604.github.io/To-Do-List/" target="_blank">Try it</a>
+
+      <h3 class="ui header">Online School Scheduler</h3>
+      <div class="ui divided section list">
+        <div class="horizontal ui purple label">JavaScript</div>
+      </div>
+      <a class="ui large button" href="https://benman604.github.io/Online-School-Scheduler/" target="_blank">Try it</a>
+    </div>
+  </div>
+
+
+  <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <small>© Benjamin Man</small>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<script src="js/movingblocks.js"></script>
+</body>
+</html>
