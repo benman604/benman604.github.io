@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+
+
+/* media selector for mobile device widths  */
+@media only screen and (max-width: 600px) {
+    .stage {
+        width: 100% !important;
+        height: fit-content !important;
+    }
+
+    .container{
+        height: fit-content !important;
+    }
+
+    .grid{
+        display: block !important;
+    }
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.stage{
+    /* background-color: rgb(54, 54, 54); */
+    background-color: rgb(55, 80, 224);
+    color: rgb(231, 223, 223);
+    width: 500px;
+    height: 330px;
+    padding: 20px;
+    overflow: scroll;
+}
+
+.grid{
+    display: grid;
+    gap: 50px 50px;
+    grid-template-columns: auto auto;
+}
+
+.pfp{
+    width: 100px;
+    border-radius: 50%;
+}
+
+a {
+    color: rgb(184, 189, 255);
+    font-weight: bold;
+    font-size: large;
+}
+
+.btn-group button {
+    background-color: rgb(184, 189, 255);
+    border: 1px solid black; 
+    color: black; 
+    padding: 10px 10px; 
+    cursor: pointer; 
+    float: left; 
+}
+  
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+  
+.btn-group button:not(:last-child) {
+    border-right: none; 
+}
+
+.btn-group button:hover:not(:nth-child(2)) {
+    background-color: rgb(201, 205, 253);
+}
+
+#sketch{
+    position: absolute;
+    z-index: -1;
+}
+
+#projects, #home{
+    width: 300px;
+    height: 265px;
+}
+
+#projects{
+    overflow: scroll;
+}
