@@ -1,4 +1,4 @@
-let scripts = ["Bounce", "Walkers", "Twist", "Cubes"]
+let scripts = ["Bounce", "Walkers", "Twist", "Cubes", "Wavemaker"]
 let nextbtn = document.getElementById("next")
 let prevbtn = document.getElementById("prev")
 let sktname = document.getElementById("sketchName")
