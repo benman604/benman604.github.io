@@ -39,16 +39,13 @@ function setup(){
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('sketch')
     v = random(3, 10)
-    center = createVector(random(50, 150), random(25, 75))
 }
 
 function draw(){
     background(255)
+    center = createVector(0, (width <= 600) ? height/3 - 400 : 0)
     translate(width/2 - center.x, height/2 - center.y)
-    let r = width/3
-    if(height/3 > r){
-        r = height/3
-    }
+    let r = (width <= 600) ? 200 : 500
     shape(polygon(r, v, createVector(0, 0)), _lerp, 0, squares)
 
     _lerp += lerpIncrement
