@@ -65,6 +65,12 @@ a {
     color: rgb(184, 189, 255);
     font-weight: bold;
     font-size: large;
+    text-decoration: none;
+}
+
+a:hover{
+    color: rgb(223, 225, 255);
+    cursor: pointer;
 }
 
 .btn-group button {
