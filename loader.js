@@ -1,4 +1,5 @@
-let scripts = ["Bounce", "Walkers", "Twist", "Cubes", "Wavemaker"]
+let scripts = ["Bounce", "Walkers", "Twist", "Cubes", "Wavemaker", "Penrose Tiles", "Game of Life"]
+let authors = ["Benjamin Man", "Benjamin Man", "Benjamin Man", "Benjamin Man", "Aatish Bhatia", "David Blitz", "natureofcode"]
 let nextbtn = document.getElementById("next")
 let prevbtn = document.getElementById("prev")
 let sktname = document.getElementById("sketchName")
@@ -13,6 +14,9 @@ if(params.has("script")){
 function loadScript(scriptIndex){
     let script = scripts[scriptIndex]
     document.getElementById("sketchScript").src = "sketches/" + script + ".js"
+    if(authors[scriptIndex] !== "Benjamin Man"){
+        document.getElementById("author").innerText = "adapted from " + authors[scriptIndex]
+    }
     sktname.innerText = script
 }
 

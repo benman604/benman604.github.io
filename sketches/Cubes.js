@@ -20,10 +20,8 @@ function draw(){
             let d = dist(i, j, mouseX, mouseY)
             if(d < spacing*0.5){
                 fill(0)
-                rotateX(frameCount * 0.01)
-                rotateY(frameCount * 0.01)
             }
-            box(min(spacing/2 + 2000/d, 200))
+            box(min(spacing/2 + 2000/d, 100))
             pop()
         }
     }

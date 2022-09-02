@@ -11,8 +11,8 @@ function draw() {
   background(255); // translucent background (creates trails)
 
   // make a x and y grid of ellipses
-  for (let x = 0; x <= width; x = x + 30) {
-    for (let y = 0; y <= height; y = y + 30) {
+  for (let x = 0; x <= width + 10; x = x + 30) {
+    for (let y = 0; y <= height + 5; y = y + 30) {
       // starting point of each circle depends on mouse position
       const xAngle = map(0, 0, width, -4 * PI, 4 * PI, true);
       const yAngle = map(0, 0, height, -4 * PI, 4 * PI, true);
