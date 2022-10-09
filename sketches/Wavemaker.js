@@ -4,15 +4,15 @@ function setup() {
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent('sketch');
   noStroke();
-  fill(0);
 }
 
 function draw() {
-  background(255); // translucent background (creates trails)
+  background(255);
+  fill('rgb(55, 80, 224)');
 
   // make a x and y grid of ellipses
-  for (let x = 0; x <= width + 10; x = x + 30) {
-    for (let y = 0; y <= height + 5; y = y + 30) {
+  for (let x = 0; x <= width + 10; x = x + 50) {
+    for (let y = 0; y <= height + 5; y = y + 50) {
       // starting point of each circle depends on mouse position
       const xAngle = map(0, 0, width, -4 * PI, 4 * PI, true);
       const yAngle = map(0, 0, height, -4 * PI, 4 * PI, true);
@@ -23,7 +23,7 @@ function draw() {
       const myX = x + 20 * cos(2 * PI * t + angle);
       const myY = y + 20 * sin(2 * PI * t + angle);
 
-      ellipse(myX, myY, 10); // draw particle
+      ellipse(myX, myY, 5); // draw particle
     }
   }
 
@@ -32,4 +32,4 @@ function draw() {
 
 function windowResized(){
     resizeCanvas(windowWidth, windowHeight)
-  }
+}

@@ -41,8 +41,3 @@ prevbtn.addEventListener("click", function(){
         gotoScript(scripts.length - 1)
     }
 })
-
-document.getElementById('clickmail').addEventListener("click", function(event) {
-    event.preventDefault();
-    window.location.href = "mailto:8k1x54yhv@relay.firefox.com"
-})

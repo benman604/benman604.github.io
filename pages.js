@@ -12,3 +12,8 @@ homebtn.addEventListener("click", function(){
     projects.style.display = "none"
     home.style.display = "block"
 })
+
+document.getElementById('clickmail').addEventListener("click", function(event) {
+    event.preventDefault();
+    window.location.href = "mailto:8k1x54yhv@relay.firefox.com"
+})
