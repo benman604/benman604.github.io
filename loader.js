@@ -5,8 +5,8 @@ let prevbtn = document.getElementById("prev")
 let sktname = document.getElementById("sketchName")
 
 const params = new URLSearchParams(window.location.search);
-if(params.has("script")){
-    loadScript(params.get("script"))
+if(params.has("sketch")){
+    loadScript(params.get("sketch"))
 } else{
     loadScript(Math.floor(Math.random() * scripts.length))
 }
@@ -21,7 +21,7 @@ function loadScript(scriptIndex){
 }
 
 function gotoScript(scriptIndex){
-    window.location.href = "?script=" + scriptIndex
+    window.location.href = "?sketch=" + scriptIndex
 }
 
 nextbtn.addEventListener("click", function(){
