@@ -41,9 +41,10 @@ body {
 }
 
 .stage{
-    /* background-color: rgb(54, 54, 54); */
-    background-color: rgb(55, 80, 224);
-    color: rgb(231, 223, 223);
+    /* background-color: rgb(55, 80, 224); */
+    background-color: white;
+    border: black 1px solid;
+    color: black;
     width: 500px;
     height: 330px;
     padding: 20px;
@@ -62,19 +63,20 @@ body {
 }
 
 a {
-    color: rgb(184, 189, 255);
+    color: blue;
     font-weight: bold;
     font-size: large;
     text-decoration: none;
 }
 
 a:hover{
-    color: rgb(223, 225, 255);
+    color: lightblue;
     cursor: pointer;
 }
 
 .btn-group button {
-    background-color: rgb(184, 189, 255);
+    /* background-color: rgb(184, 189, 255); */
+    background-color: white;
     border: 1px solid black; 
     color: black; 
     padding: 10px 10px; 
@@ -93,7 +95,8 @@ a:hover{
 }
 
 .btn-group button:hover:not(:nth-child(2)) {
-    background-color: rgb(201, 205, 253);
+    background-color: black;
+    color: white;
 }
 
 #sketch{
