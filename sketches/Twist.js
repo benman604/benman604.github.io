@@ -38,7 +38,7 @@ let ceneter
 function setup(){
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('sketch')
-    v = random(3, 10)
+    v = random(5, 10)
 }
 
 function draw(){
