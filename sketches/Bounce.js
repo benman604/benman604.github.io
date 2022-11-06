@@ -1,3 +1,4 @@
+var mAuth = "Benjamin Man"
 const gravity = 1;
 const initialNumBalls = 5;
 let balls = []
