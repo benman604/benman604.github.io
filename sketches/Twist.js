@@ -29,7 +29,7 @@ function polygon(radius, sides, center){
     return verticies
 }
 
-let _lerp = 0
+let _lerp = 0.1
 let lerpIncrement = 0.0001
 let squares = 10
 let v = 4
