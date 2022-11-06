@@ -38,7 +38,7 @@ function draw() {
         board[i][j] = 1
       }
 
-      if ((board[i][j] == 1)) fill(0);
+      if ((board[i][j] == 1)) fill(lerp(0, 255, j/rows), lerp(0, 255, i/columns), 0);
       else fill(255);
       stroke(255);
       rect(i * w, j * w, w-1, w-1);
