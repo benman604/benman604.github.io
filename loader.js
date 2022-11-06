@@ -14,8 +14,9 @@ if(params.has("sketch")){
 function loadScript(scriptIndex){
     let script = scripts[scriptIndex]
     document.getElementById("sketchScript").src = "sketches/" + script + ".js"
+    document.getElementById("sourceLink").href = "https://github.com/benman604/benman604.github.io/blob/v2/sketches/" + script + ".js"
     document.getElementById("author").innerText = notes[scriptIndex]
-
+    
     sktname.innerText = script
 }
 

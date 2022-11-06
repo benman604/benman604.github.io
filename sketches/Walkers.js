@@ -64,7 +64,7 @@ let s = 10;
 let foods = []
 let walkers = []
 let numFoods = 10
-let numWalkers = 200
+let numWalkers = 500
 let showScores = false
 
 function setup() {
