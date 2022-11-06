@@ -9,6 +9,18 @@ let notes = [
     "mouse left: create\nmouse right: destroy\nspace: pause/play\nbackspace: clear\n", 
     "mouse left: drag\nmouse right: create\nspace: enable thing"
 ]
+let disableOnMobile = ["Bounce", "Physics", "Game of Life"]
+
+// if device is mobile, disable some scripts
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    for(let i=0; i<disableOnMobile.length; i++){
+        let index = scripts.indexOf(disableOnMobile[i])
+        if(index > -1){
+            scripts.splice(index, 1)
+            notes.splice(index, 1)
+        }
+    }
+}
 
 let nextbtn = document.getElementById("next")
 let prevbtn = document.getElementById("prev")
