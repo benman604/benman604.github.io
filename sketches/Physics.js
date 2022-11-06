@@ -1,17 +1,3 @@
-// prevent context menu when right clicking the canvas
-document.addEventListener("contextmenu", function(e){
-    if(e.explicitOriginalTarget.className === "container"){
-        e.preventDefault();
-    }
-})
-
-// prevent text select when dragging mouse on canvas
-window.addEventListener('selectstart', function(e){
-    if(e.explicitOriginalTarget.className === "container"){
-        e.preventDefault();
-    }
-});
-
 var Engine = Matter.Engine,
     World = Matter.World,
     MouseConstraint = Matter.MouseConstraint,

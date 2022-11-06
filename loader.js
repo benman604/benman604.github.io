@@ -1,5 +1,15 @@
 let scripts = ["Bounce", "Walkers", "Twist", "Cubes", "Wavemaker", "Penrose Tiles", "Game of Life", "Physics"]
-let notes = ["", "", "", "", "", "adapted from David Blitz", "adapted from natureofcode", "mouse left: drag\nmouse right: create\nspace: enable thing"]
+let notes = [
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "adapted from David Blitz", 
+    "mouse left: create\nmouse right: destroy\nspace: pause/play\nbackspace: clear\n", 
+    "mouse left: drag\nmouse right: create\nspace: enable thing"
+]
+
 let nextbtn = document.getElementById("next")
 let prevbtn = document.getElementById("prev")
 let sktname = document.getElementById("sketchName")
@@ -41,3 +51,17 @@ prevbtn.addEventListener("click", function(){
         gotoScript(scripts.length - 1)
     }
 })
+
+// prevent context menu when right clicking the canvas
+document.addEventListener("contextmenu", function(e){
+    if(e.target.className === "container"){
+        e.preventDefault();
+    }
+})
+
+// prevent text select when dragging mouse on canvas
+window.addEventListener('selectstart', function(e){
+    if(e.target.className === "container"){
+        e.preventDefault();
+    }
+});

@@ -25,17 +25,23 @@ function setup() {
   init();
 }
 
+let paused = false
 function draw() {
   background(255);
-  generate();
+  if(!paused) generate()
   for ( let i = 0; i < columns;i++) {
     for ( let j = 0; j < rows;j++) {
 
 
       let mousePos = createVector(mouseX, mouseY)
-      let cellPos = createVector(i * w, j * w)
-      if(mousePos.dist(cellPos) <= w*4){
-        board[i][j] = 1
+      let cellPos = createVector((i * w) + (w/2), (j * w) + (w/2))
+      if(mousePos.dist(cellPos) <= w*0.5 && mouseIsPressed){
+        if(mouseButton == LEFT){
+          board[i][j] = 1
+        }
+        if(mouseButton == RIGHT){
+          board[i][j] = 0
+        }
       }
 
       if ((board[i][j] == 1)) fill(lerp(0, 255, j/rows), lerp(0, 255, i/columns), lerp(255, 0, ((i+j)/2)/((rows+columns)/2)));
@@ -44,7 +50,21 @@ function draw() {
       rect(i * w, j * w, w-1, w-1);
     }
   }
+}
 
+function keyPressed(){
+  if(keyCode == 32){
+    paused = !paused
+  }
+
+  if(keyCode == 8){
+    paused = true
+    for(let i = 0; i < columns; i++){
+      for(let j = 0; j < rows; j++){
+        board[i][j] = 0
+      }
+    }
+  }
 }
 
 // // reset board when mouse is pressed
@@ -56,10 +76,11 @@ function draw() {
 function init() {
   for (let i = 0; i < columns; i++) {
     for (let j = 0; j < rows; j++) {
-      // Lining the edges with 0s
-      if (i == 0 || j == 0 || i == columns-1 || j == rows-1) board[i][j] = 0;
-      // Filling the rest randomly
-      else board[i][j] = floor(random(2));
+      if(j == floor(rows/2) && i != 0 && i != columns - 1){
+        board[i][j] = 1
+      } else{
+        board[i][j] = 0;
+      }
       next[i][j] = 0;
     }
   }
@@ -109,9 +130,3 @@ function generate() {
   board = next;
   next = temp;
 }
-
-
-
-function windowResized(){
-    resizeCanvas(windowWidth, windowHeight)
-  }
