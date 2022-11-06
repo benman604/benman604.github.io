@@ -30,6 +30,14 @@ function draw() {
   generate();
   for ( let i = 0; i < columns;i++) {
     for ( let j = 0; j < rows;j++) {
+
+
+      let mousePos = createVector(mouseX, mouseY)
+      let cellPos = createVector(i * w, j * w)
+      if(mousePos.dist(cellPos) <= w*4){
+        board[i][j] = 1
+      }
+
       if ((board[i][j] == 1)) fill(0);
       else fill(255);
       stroke(255);
@@ -39,10 +47,10 @@ function draw() {
 
 }
 
-// reset board when mouse is pressed
-function mousePressed() {
-  init();
-}
+// // reset board when mouse is pressed
+// function mousePressed() {
+//   init();
+// }
 
 // Fill board randomly
 function init() {
@@ -61,13 +69,27 @@ function init() {
 function generate() {
 
   // Loop through every spot in our 2D array and check spots neighbors
-  for (let x = 1; x < columns - 1; x++) {
-    for (let y = 1; y < rows - 1; y++) {
+  for (let x = 0; x < columns; x++) {
+    for (let y = 0; y < rows; y++) {
       // Add up all the states in a 3x3 surrounding grid
       let neighbors = 0;
       for (let i = -1; i <= 1; i++) {
         for (let j = -1; j <= 1; j++) {
-          neighbors += board[x+i][y+j];
+          let nx = x + i
+          let ny = y + j
+          if(nx < 0){
+            nx = columns - 1
+          }
+          if(nx > columns - 1){
+            nx = 0
+          }
+          if(ny < 0){
+            ny = rows - 1
+          }
+          if(ny > rows - 1){
+            ny = 0
+          }
+          neighbors += board[nx][ny];
         }
       }
 
