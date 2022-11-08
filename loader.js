@@ -4,7 +4,7 @@ let notes = [
     "", 
     "", 
     "", 
-    "", 
+    "adapted from Aatish Bhatia", 
     "adapted from David Blitz", 
     "mouse left: create\nmouse right: destroy\nspace: pause/play\nbackspace: clear\n", 
     "mouse left: drag\nmouse right: create\nspace: enable thing",

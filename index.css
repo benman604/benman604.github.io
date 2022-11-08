@@ -69,6 +69,11 @@ a {
     text-decoration: none;
 }
 
+small{
+    line-height: 120%;
+    display: block;
+}
+
 a:hover{
     color: lightblue;
     cursor: pointer;
@@ -82,6 +87,7 @@ a:hover{
     padding: 10px 10px; 
     cursor: pointer; 
     float: left; 
+    margin-bottom: 10px;
 }
   
 .btn-group:after {
