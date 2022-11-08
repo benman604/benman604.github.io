@@ -1,4 +1,4 @@
-let scripts = ["Bounce", "Walkers", "Twist", "Cubes", "Wavemaker", "Penrose Tiles", "Game of Life", "Physics"]
+let scripts = ["Bounce", "Walkers", "Twist", "Cubes", "Wavemaker", "Penrose Tiles", "Game of Life", "Physics", "Pong"]
 let notes = [
     "", 
     "", 
@@ -7,7 +7,8 @@ let notes = [
     "", 
     "adapted from David Blitz", 
     "mouse left: create\nmouse right: destroy\nspace: pause/play\nbackspace: clear\n", 
-    "mouse left: drag\nmouse right: create\nspace: enable thing"
+    "mouse left: drag\nmouse right: create\nspace: enable thing",
+    "space: pause/play\nA: autopilot\n"
 ]
 let disableOnMobile = ["Bounce", "Physics", "Game of Life"]
 
