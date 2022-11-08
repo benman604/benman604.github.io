@@ -110,9 +110,9 @@ a:hover{
     z-index: -1;
 }
 
-#projects, #home{
+#projects, #home, #sketches{
     width: 275px;
-    height: 265px;
+    height: 330px;
 }
 
 #projects{

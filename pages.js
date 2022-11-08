@@ -1,16 +1,28 @@
 let projectsbtn = document.getElementById("projectsbtn")
 let projects = document.getElementById("projects")
-let homebtn = document.getElementById("homebtn")
+let homebtn = document.querySelectorAll(".homebtn")
 let home = document.getElementById("home")
+let sketchesbtn = document.getElementById("sketchesbtn")
+let sketches = document.getElementById("sketches")
 
 projectsbtn.addEventListener("click", function(){
     projects.style.display = "block"
+    sketches.style.display = "none"
     home.style.display = "none"
 })
 
-homebtn.addEventListener("click", function(){
+for(let b of homebtn){
+    b.addEventListener("click", function(){
+        projects.style.display = "none"
+        sketches.style.display = "none"
+        home.style.display = "block"
+    })
+}
+
+sketchesbtn.addEventListener("click", function(){
     projects.style.display = "none"
-    home.style.display = "block"
+    sketches.style.display = "block"
+    home.style.display = "none"
 })
 
 document.getElementById('clickmail').addEventListener("click", function(event) {
