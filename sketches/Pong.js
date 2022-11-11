@@ -8,7 +8,7 @@ let padw = 30,
     bvy = 0,
     bw = 30,
     buffer = 50,
-    speed = [10, 17]
+    speed = [10, 15]
 
 let pscore = 0,
     oscore = 0
@@ -59,19 +59,20 @@ function draw(){
         _pause2 = true 
         bvx = 0
         bvy = 0
-        fill(255, 0, 0)
 
         setTimeout(() => {
+            fill(255, 0, 0)
             _pause = false
             _pause2 = false
             by = height/2
-            bvx = 10 + pscore + oscore
+            opps++
+            bvx = random(speed[0], speed[1]) * random([-1, 1])
             bvy = random(speed[0], speed[1]) * random([-1, 1])
             if(random() > 0.5){
                 bx = padw + bw/2
             } else{
                 bx = width - padw - bw/2
-                bvx += -1
+                bvx *= -1
             }
         }, 2000)
     }

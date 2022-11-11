@@ -10,7 +10,7 @@ let notes = [
     "mouse left: drag\nmouse right: create\nspace: enable thing",
     "space: pause/play\nA: autopilot\n"
 ]
-let disableOnMobile = ["Bounce", "Physics", "Game of Life"]
+let disableOnMobile = ["Bounce", "Physics", "Game of Life", "Pong"]
 
 // if device is mobile, disable some scripts
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
@@ -21,6 +21,16 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
             notes.splice(index, 1)
         }
     }
+}
+
+for(let script of scripts){
+    let a = document.createElement("a")
+    a.innerText = script
+    a.addEventListener("click", function(){
+        gotoScript(scripts.indexOf(script))
+    })
+    document.getElementById("sketches").appendChild(a)
+    document.getElementById("sketches").appendChild(document.createElement("br"))
 }
 
 let nextbtn = document.getElementById("next")
