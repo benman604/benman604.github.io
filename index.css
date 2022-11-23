@@ -7,11 +7,11 @@
         width: 100% !important;
         height: fit-content !important;
     }
-
+    
     .container{
         height: fit-content !important;
     }
-
+    
     .grid{
         display: block !important;
     }
@@ -43,13 +43,19 @@ body {
 
 .stage{
     /* background-color: rgb(55, 80, 224); */
-    background-color: white;
+    /* background-color: white; */
     border: black 1px solid;
     color: black;
     width: 500px;
     height: 330px;
     padding: 20px;
     overflow: scroll;
+    
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
 }
 
 .grid{
@@ -90,13 +96,13 @@ a:hover{
     float: left; 
     margin-bottom: 10px;
 }
-  
+
 .btn-group:after {
     content: "";
     clear: both;
     display: table;
 }
-  
+
 .btn-group button:not(:last-child) {
     border-right: none; 
 }
@@ -129,7 +135,7 @@ a:hover{
 ::-webkit-scrollbar {
     width: 5px;
 }
-  
+
 ::-webkit-scrollbar-track {
     background: #00000000;
 }

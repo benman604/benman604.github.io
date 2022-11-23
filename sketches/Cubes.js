@@ -18,10 +18,7 @@ function draw(){
             rotateZ(angle)
             
             let d = dist(i, j, mouseX, mouseY)
-            if(d < spacing*0.5){
-                // fill(0)
-            }
-            fill(0, 0, 0, d)
+            fill(0, 0, 0, 150 - d)
             box(min(spacing/2 + 2000/d, 100))
             pop()
         }

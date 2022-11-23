@@ -38,3 +38,7 @@ img {
     margin-bottom: 20px;
     border-radius: 6px;
 }
+
+strong {
+    font-size:large;
+}

@@ -57,6 +57,10 @@ function keyPressed(){
     paused = !paused
   }
 
+  if(keyCode == 71){
+    init()
+  }
+
   if(keyCode == 8){
     paused = true
     for(let i = 0; i < columns; i++){
@@ -76,11 +80,12 @@ function keyPressed(){
 function init() {
   for (let i = 0; i < columns; i++) {
     for (let j = 0; j < rows; j++) {
-      if(j == floor(rows/2) && i != 0 && i != columns - 1){
-        board[i][j] = 1
-      } else{
-        board[i][j] = 0;
-      }
+      // if(j == floor(rows/2) && i != 0 && i != columns - 1){
+      //   board[i][j] = 1
+      // } else{
+      //   board[i][j] = 0;
+      // }
+      board[i][j] = floor(random(2));
       next[i][j] = 0;
     }
   }
