@@ -1,5 +1,7 @@
 let padw = 30,
     padh = 150,
+    py = 0,
+    ps = 10,
     oppy = 0,
     opps = 10,
     bx = 0,
@@ -8,11 +10,13 @@ let padw = 30,
     bvy = 0,
     bw = 30,
     buffer = 50,
-    speed = [10, 15]
+    speedx = [10, 15]
+    speedy = [7, 10]
 
 let pscore = 0,
     oscore = 0
 
+// oh god what on earth are these i'm so sorry
 let _pause = false,
     _pause2 = false,
     pausedbutlikeforreal = false
@@ -30,10 +34,19 @@ function setup(){
 
     bx = padw + bw/2
     by = height/2
-    bvy = random(speed[0], speed[1]) * random([-1, 1])
+    py = height/2
+    oppy = height/2
+    bvy = random(speedy[0], speedy[1]) * random([-1, 1])
 }
 
 function draw(){
+    if(keyIsDown(UP_ARROW)){
+        py -= ps
+    }
+    if(keyIsDown(DOWN_ARROW)){
+        py += ps
+    }
+
 
     let bl = createVector(width/2 - 542/2, height/2 + 372/2),
         br = createVector(width/2 + 542/2, height/2 + 372/2),
@@ -65,11 +78,15 @@ function draw(){
             _pause = false
             _pause2 = false
             by = height/2
-            opps++
-            bvx = random(speed[0], speed[1]) * random([-1, 1])
-            bvy = random(speed[0], speed[1]) * random([-1, 1])
+            opps += 0.1
+            ps += 0.2
+            speedx[0] += 0.2
+            speedx[1] += 0.2
+            speedy[1] += 0.15
+            bvx = random(speedx[0], speedx[1])
+            bvy = random(speedy[0], speedy[1]) * random([-1, 1])
             if(random() > 0.5){
-                bx = padw + bw/2
+                bx = padw + bw
             } else{
                 bx = width - padw - bw/2
                 bvx *= -1
@@ -83,14 +100,17 @@ function draw(){
         bx += bvx
         by += bvy
     } else{
-        mouseY = height/2
+        // mouseY = height/2
+        py = height/2
         oppy = height/2
     }
 
     if(autopilot){
-        mouseY = by
+        // mouseY = by
+        py = by
     }
     
+    // WHAT THE FUCK
     if(bvy > 0){
         // box top
         if(bx > bl.x && bx < br.x){
@@ -143,7 +163,8 @@ function draw(){
         }
 
         if(bx - bw/2 <= padw){
-            if(by > mouseY - padh/2 && by < mouseY + padh/2){
+            // if(by > mouseY - padh/2 && by < mouseY + padh/2){
+            if(by > py - padh/2 && by < py + padh/2){
                 bvx = -bvx
             } else {
                 if(!_pause){
@@ -182,7 +203,8 @@ function draw(){
     }
 
     fill(0)
-    rect(padw/2, mouseY, padw, padh)
+    // rect(padw/2, mouseY, padw, padh)
+    rect(padw/2, py, padw, padh)
     rect(width-padw/2, oppy, padw, padh)
 }
 
