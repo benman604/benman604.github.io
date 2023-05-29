@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Man - Projects</title>
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        #following-image {
+            position: fixed;
+            z-index: 999;
+            display: none;
+        }
+        #following-image img {
+            max-width: 100%;
+            max-height: 100%;
+            width: 500px;
+            object-fit: contain;
+        }
+        #linklist a{
+            width: 100%;
+            display: flex;
+        }
+
+        a {
+            color: black;
+            font-weight: lighter;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="grid">
+            <div>
+                <a href="../">< Home</a>
+            </div>
+            
+            <div id="linklist">
+                <a href="#" data-image="images/icgp-sc.jpg">Infinite Campus Grade Predictor</a>
+                <a href="#" data-image="images/dirdle-sc.png">dirdle</a>
+                <a href="#" data-image="images/snake-sc.png">Snake 3D</a>
+                <a href="#" data-image="images/3dmusic-sc.png">3D Music Visualizer</a>
+                <a href="#" data-image="images/gravicube-sc.png">Gravicube</a>
+                <a href="#" data-image="images/bezier-sc.png">Recursive Bezier</a>
+                <a href="#" data-image="images/trig-sc.png">Trigonometry Dash</a>
+                <a href="#" data-image="images/">RESPAWN</a>
+                <a href="#" data-image="images/">Shadow Dungeon</a>
+                <a href="#" data-image="images/">benjaminman.com</a>
+                <a href="#" data-image="images/">Firefox Userchrome</a>
+                <a href="#" data-image="images/">Cuberun</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="following-image"></div>
+    
+    <script src="imagehover.js"></script>
+</body>
+</html>
