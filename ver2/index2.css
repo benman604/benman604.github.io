@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+
+#sketch{
+    position: absolute;
+    z-index: -1;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(20, 20, 20);
+}
+
+body {
+    /* font-family: 'IBM Plex Sans', sans-serif; */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+p {
+    font-weight: 100;
+}
+
+a {
+    color: lightblue;
+    font-weight: 400;
+    font-size: large;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.stage {
+    width: 316px;
+    height: 458px;
+    margin: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid white;
+}
+
+.grid{
+    display: grid;
+    gap: 50px 50px;
+    grid-template-columns: auto auto;
+}
+
+button {
+    width: 100%;
+    padding: 5px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid darkgray;
+    margin-bottom: 5px;
+}
+
+button:hover:not(:disabled) {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+button:disabled {
+    border: 1px solid rgb(90, 90, 90);
+    color: darkgray
+}

@@ -1,15 +1,9 @@
 // let projectsbtn = document.getElementById("projectsbtn")
 // let projects = document.getElementById("projects")
 let homebtn = document.querySelectorAll(".homebtn")
-let home = document.getElementById("home")
+let home = document.getElementById("links")
 let sketchesbtn = document.getElementById("sketchesbtn")
 let sketches = document.getElementById("sketches")
-
-// projectsbtn.addEventListener("click", function(){
-//     projects.style.display = "block"
-//     sketches.style.display = "none"
-//     home.style.display = "none"
-// })
 
 for(let b of homebtn){
     b.addEventListener("click", function(){

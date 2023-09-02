@@ -112,6 +112,16 @@ a:hover{
     color: white;
 }
 
+.btn-group button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btn-group button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 #sketch{
     position: absolute;
     z-index: -1;
@@ -120,6 +130,10 @@ a:hover{
 #projects, #home, #sketches{
     width: 275px;
     height: 330px;
+}
+
+#sketchName {
+    width: 110px
 }
 
 #projects{

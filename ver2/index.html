@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Man</title>
+
+    <script src="https://kit.fontawesome.com/43dc370da9.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js" id="p5"></script>
+    <script src="https://unpkg.com/matter-js@0.14.2/build/matter.min.js"></script>
+
+    <link rel="stylesheet" href="index2.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <div id="sketch"></div>
+
+    <div class="container">
+        <div class="stage">
+            <h1>Benjamin Man</h1>
+            <p>I'm a first-year studying computer science and linguistics at UCLA. I enjoy creative coding, game development, and digital art among other things.</p>
+            <p>Anyways, here's a maze generation and solving algorithm visualization. Check out the <a href="https://github.com/benman604/benman604.github.io" style="font-weight: bold;">source</a> or the <a href="../" style="font-weight: bold;">older version</a> of this website.</p>
+            <br>
+            <div class="grid">
+                <div class="half">
+                    <a href="https://github.com/benman604">
+                        <i class="fa-brands fa-github"></i>
+                        Github
+                    </a> <br>
+                    <a href="https://benjamin-man.itch.io/">
+                        <i class="fa-brands fa-itch-io"></i>
+                        itch.io
+                    </a> <br>
+                    <a href="https://www.youtube.com/channel/UCttQGQE5lg9vOBdDMSe2rLA">
+                        <i class="fa-brands fa-youtube"></i>
+                        YouTube
+                    </a> <br>
+                    <a href="https://www.linkedin.com/in/benjamin-man-839b69196/">
+                        <i class="fa-brands fa-linkedin"></i>
+                        LinkedIn
+                    </a> <br>
+                    <a>
+                        <i class="fas fa-envelope"></i>
+                        <b style="font-weight: 400;" id="clickmail">Email</b>
+                    </a>
+                </div>
+
+                <div class="half">
+                    <button id="regen">Regenerate Maze</button>
+                    <button id="astar" disabled>Solve A*</button>
+                    <button id="dijkstra" disabled>Solve Dijkstra's</button>
+                    <button id="bfs" disabled>Solve BFS</button>
+                </div>
+
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById('clickmail').addEventListener("click", function(event) {
+            event.preventDefault();
+            window.location.href = "mailto:8k1x54yhv" + "@rel" + "ay.firefox.com"
+        })
+    </script>
+    <script src="cell.js"></script>
+    <script src="maze.js"></script>
+</body>
+</html>
