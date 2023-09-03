@@ -1,11 +1,12 @@
-let _strokeWeight = 1
-let padding = 2
-let boxSize = 51
-let tlx = 314 + _strokeWeight + padding
-let tcx = 9 + _strokeWeight + padding 
-let tcy = 412 + _strokeWeight + padding
-let grid = []
+var _strokeWeight = 2
+var padding = 2
+var boxSize = 51
+var tlx = 314 + _strokeWeight + padding
+var tcx = 9 + _strokeWeight + padding 
+var tcy = 412 + _strokeWeight + padding
+var grid = []
 let current
+var last
 let stack = []
 
 let done = false
@@ -24,6 +25,7 @@ function generateMaze() {
 	grid = []
 	done = false
 	setButtonsEnabled(false)
+	bfsstack = []
 
 	for (let x = tcx - _strokeWeight; x < windowWidth - boxSize - _strokeWeight - padding - 5; x += boxSize){
 		grid.push([])
@@ -40,6 +42,8 @@ function generateMaze() {
 	}
 
 	current = grid[7][0]
+	last = grid[grid.length-1][grid[grid.length-1].length - 1]
+	// onMazeGenerated()
 }
 
 function draw() {
@@ -53,7 +57,7 @@ function draw() {
 
 	current.visited = true
 	let next = current.checkNeighbors()
-	if(next) {
+	if(next && !done) {
 
 		if(next.i == current.i + 1) {
 			current.right = false
@@ -78,19 +82,38 @@ function draw() {
 	} else if(stack.length > 0) {
 		current = stack.pop()
 	} else {
-		let last = grid[grid.length-1][grid[grid.length-1].length - 1]
 		rectMode(CENTER)
 		noStroke()
 		fill(100, 255, 100) 
 		rect(last.x + boxSize/2, last.y + boxSize/2, boxSize/2) 
 
 		if(!done){
-			setButtonsEnabled(true)
+			done = true
+			onMazeGenerated()
 		}
-		done = true
+	}
+
+	if(bfsstack.length > 1){	
+		for(let i=0; i<bfsstack.length-1; i++) {
+			stroke(0,0,255)
+			strokeWeight(2)  
+			line(bfsstack[i].x + boxSize/2, bfsstack[i].y + boxSize/2, bfsstack[i+1].x + boxSize/2, bfsstack[i+1].y + boxSize/2) 
+		}
 	}
 }
 
+function onMazeGenerated() {
+	setButtonsEnabled(true)
+	points = []
+	for(let i=0; i<grid.length; i++){
+		for(let j=0; j<grid[i].length; j++){
+			grid[i][j].visited = false
+			grid[i][j].k = 0
+			grid[i][j].visitTimes = 0
+			grid[i][j].doneForGood = false
+		}
+	}
+}
 
 document.getElementById('regen').addEventListener('click', generateMaze)
 
