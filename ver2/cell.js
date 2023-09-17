@@ -20,6 +20,8 @@ function Cell(i, j, x, y) {
 	this.visited = false
     this.visitTimes = 0
 
+	this.parent = null
+
 	this.show = () => {
 		if (!this.enable) {return}
 		noFill()
@@ -87,7 +89,7 @@ function Cell(i, j, x, y) {
 
     this.k = 0
     this.doneForGood = false
-    this.whereCanGo = () => {
+    this.whereCanGo = (getall) => {
 		let neighbors = [];
 
         let dir = []
@@ -104,6 +106,10 @@ function Cell(i, j, x, y) {
             if(!n.visited){
 			    neighbors.push(n);
             } 
+		}
+
+		if (getall) {
+			return neighbors
 		}
 
         this.doneForGood = true

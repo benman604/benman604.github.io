@@ -1,5 +1,5 @@
 var _strokeWeight = 2
-var padding = 2
+var padding = 3
 var boxSize = 51
 var tlx = 314 + _strokeWeight + padding
 var tcx = 9 + _strokeWeight + padding 
@@ -25,7 +25,7 @@ function generateMaze() {
 	grid = []
 	done = false
 	setButtonsEnabled(false)
-	bfsstack = []
+	dfsstack = []
 
 	for (let x = tcx - _strokeWeight; x < windowWidth - boxSize - _strokeWeight - padding - 5; x += boxSize){
 		grid.push([])
@@ -43,7 +43,6 @@ function generateMaze() {
 
 	current = grid[7][0]
 	last = grid[grid.length-1][grid[grid.length-1].length - 1]
-	// onMazeGenerated()
 }
 
 function draw() {
@@ -93,11 +92,11 @@ function draw() {
 		}
 	}
 
-	if(bfsstack.length > 1){	
-		for(let i=0; i<bfsstack.length-1; i++) {
+	if(dfsstack.length > 1){	
+		for(let i=0; i<dfsstack.length-1; i++) {
 			stroke(0,0,255)
 			strokeWeight(2)  
-			line(bfsstack[i].x + boxSize/2, bfsstack[i].y + boxSize/2, bfsstack[i+1].x + boxSize/2, bfsstack[i+1].y + boxSize/2) 
+			line(dfsstack[i].x + boxSize/2, dfsstack[i].y + boxSize/2, dfsstack[i+1].x + boxSize/2, dfsstack[i+1].y + boxSize/2) 
 		}
 	}
 }
@@ -120,5 +119,6 @@ document.getElementById('regen').addEventListener('click', generateMaze)
 function setButtonsEnabled(val) {
 	document.getElementById('astar').disabled = !val
 	document.getElementById('dijkstra').disabled = !val
+	document.getElementById('dfs').disabled = !val
 	document.getElementById('bfs').disabled = !val
 }

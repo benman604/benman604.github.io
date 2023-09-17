@@ -1,43 +1,29 @@
-let bfsstack = []
-let bfsdone = false
+let bfsqueue = []
 
 function bfs(current) {
     current.visited = true
     current.isCurrent = true
-    // points.push({x: current.x, y: current.y})
+    bfsqueue.unshift(current)
 
-    if(current.i == last.i && current.j == last.j) {
-        bfsstack.push(current)
-        return bfsstack
-    }
+    while (bfsqueue.length > 0) {
+        let v = bfsqueue.pop()
 
-    let next = current.whereCanGo()
-    if(next) {
-        next.visited = true
-        next.visitTimes = next.visitTimes + 1
-        bfsstack.push(current)
+        if (v.i == last.i && v.j == last.j) {
+            return v
+        }
 
-        setTimeout(() => {
-            current.isCurrent = false
-            return bfs(next)
-        }, 10)
-        
-        // return bfs(next)
-    } else if(bfsstack.length > 0) {
-        // console.log(bfsstack)
-        setTimeout(() => {
-            current.isCurrent = false
-            return bfs(bfsstack.pop())
-        }, 10)
-    } else {
-        return
+        for (let w of v.whereCanGo(true)) {
+            if (!w.visited) {
+                w.visited = true
+                w.parent = v
+                bfsqueue.unshift(w)
+            }
+        }
     }
 }
 
-document.getElementById('bfs').addEventListener('click', async () => {    
+document.getElementById('bfs').addEventListener('click', () => {
     onMazeGenerated()
-    bfsstack = []
-    
-    let result = bfs(grid[7][0])
-    console.log(result)
+    bfsqueue = []
+    console.log(bfs(grid[0][7]))
 })
