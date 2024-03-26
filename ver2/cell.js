@@ -18,12 +18,12 @@ function Cell(i, j, x, y) {
 	this.right = true
 
 	this.visited = false
-    this.visitTimes = 0
 
-	this.parent = null
+	this.enable = false
+	this.ready = false
 
 	this.show = () => {
-		if (!this.enable) {return}
+		if (!this.enable || !this.ready) {return}
 		noFill()
 		strokeWeight(_strokeWeight)
 		stroke(180)
@@ -37,31 +37,26 @@ function Cell(i, j, x, y) {
 		if(this.left)
 			line(x, y+boxSize, x, y)
 
-        if(this.doneForGood && done){
-            fill(20)
+        if(this.visited && done){
+            fill(50)
             noStroke()
             rectMode(CORNER)
             rect(x, y, boxSize) 
-        }
-        else if(this.visited && done) {
-            fill(100)
-            noStroke()
-            rectMode(CORNER)
-            rect(x, y, boxSize) 
-        }
-
-        if(this == current || this.isCurrent) {
-			fill(255)
+        } 
+		
+		if(this == current || this.isCurrent) {
+			fill(100)
 			noStroke() 
-            rectMode(CENTER)
-			ellipse(x + boxSize/2, y + boxSize/2, boxSize/5) 
+            rectMode(CORNER)
+			// ellipse(x + boxSize/2, y + boxSize/2, boxSize/5 - padding) 
+			rect(x, y, boxSize)
 		}
 
 		// stroke(255)
 		// text(i + "," + j, x, y+10) 
 	}
 
-	this.checkNeighbors = () => {
+	this.getNeighbors = () => {
 		let neighbors = [];
 
 		for (const [dx, dy] of directions) {
@@ -76,15 +71,11 @@ function Cell(i, j, x, y) {
 				!grid[newRow][newCol].visited &&
 				grid[newRow][newCol].enable
 			) {
-				neighbors.push(grid[newRow][newCol]);
+				neighbors.push(grid[newRow][newCol])
 			}
 		}
 
-		if (neighbors.length > 0) {
-			return random(neighbors) 
-		} else {
-			return undefined
-		}
+		return neighbors
 	}
 
     this.k = 0
@@ -103,9 +94,9 @@ function Cell(i, j, x, y) {
 			const newCol = j + dy;
 
             let n = grid[newRow][newCol]
-            if(!n.visited){
+            if (!n.visited){
 			    neighbors.push(n);
-            } 
+            }
 		}
 
 		if (getall) {

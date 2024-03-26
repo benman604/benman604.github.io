@@ -1,0 +1,14 @@
+#sketch{
+    position: absolute;
+    z-index: -1;
+}
+
+.stage {
+    width: 400px;
+    overflow: scroll;
+
+    border: black 1px solid;
+    color: black;
+    margin: 10px;
+    padding: 10px;
+}

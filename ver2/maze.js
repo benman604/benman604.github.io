@@ -2,12 +2,14 @@ var _strokeWeight = 2
 var padding = 3
 var boxSize = 51
 var tlx = 314 + _strokeWeight + padding
-var tcx = 9 + _strokeWeight + padding 
+var tcx = 8 + _strokeWeight + padding 
 var tcy = 412 + _strokeWeight + padding
 var grid = []
 let current
 var last
 let stack = []
+
+var msBetweenSteps = 1
 
 let done = false
 
@@ -26,6 +28,7 @@ function generateMaze() {
 	done = false
 	setButtonsEnabled(false)
 	dfsstack = []
+	bfsqueue = []
 
 	for (let x = tcx - _strokeWeight; x < windowWidth - boxSize - _strokeWeight - padding - 5; x += boxSize){
 		grid.push([])
@@ -43,6 +46,7 @@ function generateMaze() {
 
 	current = grid[7][0]
 	last = grid[grid.length-1][grid[grid.length-1].length - 1]
+	nextStepMaze()
 }
 
 function draw() {
@@ -54,8 +58,23 @@ function draw() {
 		}
 	}
 
+	if(dfsstack.length > 1){	
+		for(let i=0; i<dfsstack.length-1; i++) {
+			stroke(0,0,255)
+			strokeWeight(2)  
+			line(dfsstack[i].x + boxSize/2, dfsstack[i].y + boxSize/2, dfsstack[i+1].x + boxSize/2, dfsstack[i+1].y + boxSize/2) 
+		}
+	}
+}
+
+
+function nextStepMaze() { 
+	background(20)
+
 	current.visited = true
-	let next = current.checkNeighbors()
+	current.ready = true
+
+	let next = random(current.getNeighbors())
 	if(next && !done) {
 
 		if(next.i == current.i + 1) {
@@ -81,10 +100,10 @@ function draw() {
 	} else if(stack.length > 0) {
 		current = stack.pop()
 	} else {
-		rectMode(CENTER)
-		noStroke()
-		fill(100, 255, 100) 
-		rect(last.x + boxSize/2, last.y + boxSize/2, boxSize/2) 
+		// rectMode(CENTER)
+		// noStroke()
+		// fill(100, 255, 100) 
+		// rect(last.x + boxSize/2, last.y + boxSize/2, boxSize/2) 
 
 		if(!done){
 			done = true
@@ -92,24 +111,22 @@ function draw() {
 		}
 	}
 
-	if(dfsstack.length > 1){	
-		for(let i=0; i<dfsstack.length-1; i++) {
-			stroke(0,0,255)
-			strokeWeight(2)  
-			line(dfsstack[i].x + boxSize/2, dfsstack[i].y + boxSize/2, dfsstack[i+1].x + boxSize/2, dfsstack[i+1].y + boxSize/2) 
-		}
+	if(!done) {
+		setTimeout(nextStepMaze, 1)
 	}
 }
 
 function onMazeGenerated() {
 	setButtonsEnabled(true)
 	points = []
+	dfsstack = []
+	bfsqueue = []
 	for(let i=0; i<grid.length; i++){
 		for(let j=0; j<grid[i].length; j++){
 			grid[i][j].visited = false
+			grid[i][j].ready = true
 			grid[i][j].k = 0
-			grid[i][j].visitTimes = 0
-			grid[i][j].doneForGood = false
+			grid[i][j].doneForGood = false 
 		}
 	}
 }
@@ -117,6 +134,7 @@ function onMazeGenerated() {
 document.getElementById('regen').addEventListener('click', generateMaze)
 
 function setButtonsEnabled(val) {
+	document.getElementById('regen').disabled = !val
 	document.getElementById('astar').disabled = !val
 	document.getElementById('dijkstra').disabled = !val
 	document.getElementById('dfs').disabled = !val

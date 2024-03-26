@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Man</title>
+
+    <script src="https://kit.fontawesome.com/43dc370da9.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js" id="p5"></script>
+    <script src="https://unpkg.com/matter-js@0.14.2/build/matter.min.js"></script>
+
+    <link rel="stylesheet" href="index2.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="sketch"></div>
+
+    <div class="container">
+
+
+        <div class="stage">
+            <div class="grid">
+                <div id="home">
+                <h1>BENJAMIN MAN</h1>
+                    <!-- <img src="pfp.png" alt="my pfp" class="pfp"> -->
+                    <p>I'm a first-year studying computer science and linguistics at UCLA. I enjoy creative coding, game development, and digital art among other things.</p>
+                    <br>
+                </div>
+                
+                <div id="sketches" style="display: none;">
+                    <a href="#" class="homebtn">< Back</a>
+                    <hr>
+                </div>
+
+
+                <div style="margin-top: 50px">
+                    <a href="https://github.com/benman604">
+                        <i class="fa-brands fa-github"></i>
+                        Github
+                    </a> <br>
+                    <a href="https://benjamin-man.itch.io/">
+                        <i class="fa-brands fa-itch-io"></i>
+                        itch.io
+                    </a> <br>
+                    <a href="https://www.youtube.com/channel/UCttQGQE5lg9vOBdDMSe2rLA">
+                        <i class="fa-brands fa-youtube"></i>
+                        YouTube
+                    </a> <br>
+                    <a href="https://www.linkedin.com/in/benjamin-man-839b69196/">
+                        <i class="fa-brands fa-linkedin"></i>
+                        LinkedIn
+                    </a> <br>
+                    <a>
+                        <i class="fas fa-envelope"></i>
+                        <b id="clickmail">Email</b>
+                    </a>
+                    <br><br>
+                    <div class="btn-group">
+                        <button id="prev">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button id="sketchName">
+                            "Bounce"
+                        </button>
+                        <button id="next">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <small><i id="author"></i></small>
+                    <a id="sourceLink" href="#" style="font-size: x-small;">View source</a> |
+                    <a id="sketchesbtn" href="#" style="font-size:x-small">All sketches</a>
+                </div> <!-- links sidebar -->
+            </div> <!-- grid -->
+        </div> <!-- stage -->
+
+
+    </div> <!-- container -->
+
+    <script id="sketchScript"></script>
+    <script src="loader.js"></script>
+    <script src="pages.js"></script>
+</body>
+</html>

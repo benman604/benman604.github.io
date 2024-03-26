@@ -1,29 +1,45 @@
 let bfsqueue = []
+let found = false
+let prevVisited = new Map()
 
 function bfs(current) {
+    if(current.i == last.i && current.j == last.j) {
+        current.visited = true
+        current.isCurrent = true
+        found = true
+
+        let trace = prevVisited.get(current)
+        while(trace) {
+            dfsstack.push(trace)
+            trace = prevVisited.get(trace)
+        }
+        dfsstack.unshift(grid[last.i][last.j])
+        return
+    }
+
     current.visited = true
     current.isCurrent = true
-    bfsqueue.unshift(current)
 
-    while (bfsqueue.length > 0) {
-        let v = bfsqueue.pop()
+    let possible = current.whereCanGo(true)
+    for (let neighbor of possible) {
+        bfsqueue.push(neighbor)
+        prevVisited.set(neighbor, current)
+    }
 
-        if (v.i == last.i && v.j == last.j) {
-            return v
-        }
-
-        for (let w of v.whereCanGo(true)) {
-            if (!w.visited) {
-                w.visited = true
-                w.parent = v
-                bfsqueue.unshift(w)
-            }
-        }
+    if (bfsqueue.length > 0) {
+        setTimeout(() => {
+            current.isCurrent = false
+            return bfs(bfsqueue.shift())
+        }, msBetweenSteps)
+    } else {
+        return
     }
 }
 
-document.getElementById('bfs').addEventListener('click', () => {
+document.getElementById('bfs').addEventListener('click', async () => {
     onMazeGenerated()
     bfsqueue = []
-    console.log(bfs(grid[0][7]))
+    found = false
+    let result = bfs(grid[7][0])
+    console.log(result + " okkk")
 })

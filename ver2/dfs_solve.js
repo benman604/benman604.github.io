@@ -13,21 +13,18 @@ function dfs(current) {
     let next = current.whereCanGo()
     if(next) {
         next.visited = true
-        next.visitTimes = next.visitTimes + 1
         dfsstack.push(current)
 
         setTimeout(() => {
             current.isCurrent = false
             return dfs(next)
-        }, 10)
+        }, msBetweenSteps)
         
-        // return dfs(next)
     } else if(dfsstack.length > 0) {
-        // console.log(dfsstack)
         setTimeout(() => {
             current.isCurrent = false
             return dfs(dfsstack.pop())
-        }, 10)
+        }, msBetweenSteps)
     } else {
         return
     }
