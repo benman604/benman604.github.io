@@ -18,6 +18,7 @@
 }
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
+    margin-bottom: 5px;
 }
 
 html {
@@ -65,9 +66,26 @@ body {
     grid-template-columns: auto auto;
 }
 
+.sidebyside {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebyside * {
+    margin: 0;
+    padding: 0;
+}
+
+/* everything inside sidebyside that isnt the last will have margin right */
+.sidebyside > *:not(:last-child) {
+    margin-right: 20px;
+}
+
 .pfp{
     width: 100px;
     border-radius: 50%;
+    margin: 0 auto;
+    padding: 0;
 }
 
 a {
