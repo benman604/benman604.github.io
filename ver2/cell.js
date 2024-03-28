@@ -24,6 +24,22 @@ function Cell(i, j, x, y) {
 
 	this.show = () => {
 		if (!this.enable || !this.ready) {return}
+
+        if(this.visited && done){
+            fill(50)
+            noStroke()
+            rectMode(CORNER)
+            rect(x, y, boxSize) 
+        } 
+		
+		if(this.isCurrent) {
+			fill(100)
+			noStroke() 
+            rectMode(CORNER)
+			// ellipse(x + boxSize/2, y + boxSize/2, boxSize/5 - padding) 
+			rect(x, y, boxSize)
+		}
+
 		noFill()
 		strokeWeight(_strokeWeight)
 		stroke(180)
@@ -36,21 +52,6 @@ function Cell(i, j, x, y) {
 			line(x+boxSize, y+boxSize, x, y+boxSize)
 		if(this.left)
 			line(x, y+boxSize, x, y)
-
-        if(this.visited && done){
-            fill(50)
-            noStroke()
-            rectMode(CORNER)
-            rect(x, y, boxSize) 
-        } 
-		
-		if(this == current || this.isCurrent) {
-			fill(100)
-			noStroke() 
-            rectMode(CORNER)
-			// ellipse(x + boxSize/2, y + boxSize/2, boxSize/5 - padding) 
-			rect(x, y, boxSize)
-		}
 
 		// stroke(255)
 		// text(i + "," + j, x, y+10) 
@@ -78,9 +79,7 @@ function Cell(i, j, x, y) {
 		return neighbors
 	}
 
-    this.k = 0
-    this.doneForGood = false
-    this.whereCanGo = (getall) => {
+    this.whereCanGo = () => {
 		let neighbors = [];
 
         let dir = []
@@ -93,42 +92,14 @@ function Cell(i, j, x, y) {
 			const newRow = i + dx;
 			const newCol = j + dy;
 
-            let n = grid[newRow][newCol]
-            if (!n.visited){
+            let m = grid[newRow]
+			let n
+			if (m) {n = m[newCol]}
+            if (n && !n.visited){
 			    neighbors.push(n);
             }
 		}
 
-		if (getall) {
-			return neighbors
-		}
-
-        this.doneForGood = true
-        for(let neighbor of neighbors) {
-            if(!neighbor.visited) {
-                this.doneForGood = false
-            }
-        }
-
-		if (neighbors.length > 0) {
-            this.k += 1
-			// return neighbors[this.k % neighbors.length]
-            let goodNeighbors = []
-            for(let neighbor of neighbors) {
-                if(!neighbor.doneForGood){
-                    goodNeighbors.push(neighbor)
-                }
-            }
-            
-            if(goodNeighbors.length > 0) {
-                // return random(goodNeighbors)
-                return goodNeighbors[this.k % goodNeighbors.length]
-            } 
-            // return random(neighbors)
-            return neighbors[this.k % neighbors.length]
-		} else {
-            console.log("uh oh")
-			return undefined
-		}
+		return neighbors
 	}
 }

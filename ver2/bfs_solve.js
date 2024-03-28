@@ -40,6 +40,6 @@ document.getElementById('bfs').addEventListener('click', async () => {
     onMazeGenerated()
     bfsqueue = []
     found = false
-    let result = bfs(grid[7][0])
+    let result = bfs(grid[first.i][first.j])
     console.log(result + " okkk")
 })

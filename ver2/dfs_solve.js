@@ -3,14 +3,14 @@ let dfsstack = []
 function dfs(current) {
     current.visited = true
     current.isCurrent = true
-    // points.push({x: current.x, y: current.y})
 
     if(current.i == last.i && current.j == last.j) {
         dfsstack.push(current)
         return dfsstack
     }
 
-    let next = current.whereCanGo()
+    let n = current.whereCanGo()
+    let next = n[0]
     if(next) {
         next.visited = true
         dfsstack.push(current)
@@ -23,7 +23,7 @@ function dfs(current) {
     } else if(dfsstack.length > 0) {
         setTimeout(() => {
             current.isCurrent = false
-            return dfs(dfsstack.pop())
+            return dfs(dfsstack.pop()) 
         }, msBetweenSteps)
     } else {
         return
@@ -34,6 +34,6 @@ document.getElementById('dfs').addEventListener('click', async () => {
     onMazeGenerated()
     dfsstack = []
     
-    let result = dfs(grid[7][0])
+    let result = dfs(grid[first.i][first.j])
     console.log(result)
 })

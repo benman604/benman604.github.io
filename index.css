@@ -5,10 +5,14 @@
 
 
 /* media selector for mobile device widths  */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 550px) {
     .stage {
         width: 100% !important;
         height: fit-content !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px !important;
     }
     
     .container{

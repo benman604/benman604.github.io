@@ -6,10 +6,12 @@ var tcx = 8 + _strokeWeight + padding
 var tcy = 412 + _strokeWeight + padding
 var grid = []
 let current
+var first
 var last
 let stack = []
 
-var msBetweenSteps = 1
+var msBetweenSteps = 10
+var generateMazeInstantly = true
 
 let done = false
 
@@ -44,8 +46,13 @@ function generateMaze() {
 		j=0
 	}
 
-	current = grid[7][0]
-	last = grid[grid.length-1][grid[grid.length-1].length - 1]
+	// set first and last to random cells in the grid until they are not the same and they are enabled
+	do {
+		first = grid[floor(random(grid.length))][floor(random(grid[0].length))]
+		last = grid[floor(random(grid.length))][floor(random(grid[0].length))]
+	} while(first == last || !first.enable || !last.enable)
+
+	current = grid[floor(grid.length / 2)][floor(grid[0].length / 2)]
 	nextStepMaze()
 }
 
@@ -58,17 +65,40 @@ function draw() {
 		}
 	}
 
+	if(current) {
+		fill(100)
+		noStroke()
+		rectMode(CORNER)
+		rect(current.x, current.y, boxSize)
+	}
+
+	distTo.forEach((value, key, innerMap) => {
+		if (value.score) {
+			fill(100)
+			noStroke()
+			text(Math.round(value.score * 1000) / 1000, key.x + 5, key.y + 15)
+		}
+	})
+
 	if(dfsstack.length > 1){	
 		for(let i=0; i<dfsstack.length-1; i++) {
-			stroke(0,0,255)
+			stroke(200,255,40)
 			strokeWeight(2)  
 			line(dfsstack[i].x + boxSize/2, dfsstack[i].y + boxSize/2, dfsstack[i+1].x + boxSize/2, dfsstack[i+1].y + boxSize/2) 
 		}
 	}
+
+	if (done) {
+		fill(200,255,40)
+		noStroke()
+		rectMode(CENTER)
+		ellipse(first.x + boxSize / 2, first.y + boxSize / 2, boxSize / 2)
+		triangle(last.x + boxSize / 2, last.y + boxSize / 2 - boxSize / 3, last.x + boxSize / 2 - Math.sqrt(3) * boxSize / 6, last.y + boxSize / 2 + boxSize / 6, last.x + boxSize / 2 + Math.sqrt(3) * boxSize / 6, last.y + boxSize / 2 + boxSize / 6);
+	}
 }
 
 
-function nextStepMaze() { 
+function nextStepMaze() {
 	background(20)
 
 	current.visited = true
@@ -94,25 +124,21 @@ function nextStepMaze() {
 			next.bottom = false
 		}
 
+
 		next.visited = true
 		stack.push(current)
 		current = next
 	} else if(stack.length > 0) {
 		current = stack.pop()
-	} else {
-		// rectMode(CENTER)
-		// noStroke()
-		// fill(100, 255, 100) 
-		// rect(last.x + boxSize/2, last.y + boxSize/2, boxSize/2) 
-
-		if(!done){
-			done = true
-			onMazeGenerated()
-		}
+	} else if(!done){
+		done = true
+		current = null
+		onMazeGenerated()
 	}
 
 	if(!done) {
-		setTimeout(nextStepMaze, 1)
+		if (generateMazeInstantly) {nextStepMaze()}
+		else {setTimeout(nextStepMaze, 1)}
 	}
 }
 
@@ -121,12 +147,12 @@ function onMazeGenerated() {
 	points = []
 	dfsstack = []
 	bfsqueue = []
+	distTo = new Map()
+
 	for(let i=0; i<grid.length; i++){
 		for(let j=0; j<grid[i].length; j++){
 			grid[i][j].visited = false
 			grid[i][j].ready = true
-			grid[i][j].k = 0
-			grid[i][j].doneForGood = false 
 		}
 	}
 }
@@ -136,7 +162,7 @@ document.getElementById('regen').addEventListener('click', generateMaze)
 function setButtonsEnabled(val) {
 	document.getElementById('regen').disabled = !val
 	document.getElementById('astar').disabled = !val
-	document.getElementById('dijkstra').disabled = !val
+	// document.getElementById('dijkstra').disabled = !val
 	document.getElementById('dfs').disabled = !val
 	document.getElementById('bfs').disabled = !val
 }
