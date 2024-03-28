@@ -1,9 +1,10 @@
 var _strokeWeight = 2
-var padding = 3
-var boxSize = 51
-var tlx = 314 + _strokeWeight + padding
-var tcx = 8 + _strokeWeight + padding 
-var tcy = 412 + _strokeWeight + padding
+var boxSize = 27.5
+
+var leftx = 11
+var rightx = 368
+var yfromcenter = (550 / 2) - 1
+
 var grid = []
 let current
 var first
@@ -20,10 +21,13 @@ function setup() {
 	canvas.parent('sketch');
 
 	generateMaze()
-	// frameRate(5)
 }
 
 function generateMaze() {
+	let numCellsAbove = floor((height / 2 - yfromcenter) / boxSize)
+	let startY = (height / 2 - yfromcenter) - numCellsAbove * boxSize
+	let endY = (height / 2 + yfromcenter) + numCellsAbove * boxSize
+
 	let i = 0
 	let j = 0
 	grid = []
@@ -31,12 +35,13 @@ function generateMaze() {
 	setButtonsEnabled(false)
 	dfsstack = []
 	bfsqueue = []
+	distTo = new Map()
 
-	for (let x = tcx - _strokeWeight; x < windowWidth - boxSize - _strokeWeight - padding - 5; x += boxSize){
+	for (let x = leftx; x < windowWidth - boxSize - 7; x += boxSize){
 		grid.push([])
-		for(let y = padding - _strokeWeight; y < windowHeight - boxSize - _strokeWeight - padding - 5; y += boxSize){
+		for(let y = startY; y < endY; y += boxSize){
 			let cell = new Cell(i, j, x, y)
-			if(x > tlx || y > tcy){
+			if((y > height / 2 + yfromcenter || y < height / 2 - yfromcenter) || (x > rightx)){
 				cell.enable = true
 			}
 			grid[i].push(cell)
@@ -52,51 +57,12 @@ function generateMaze() {
 		last = grid[floor(random(grid.length))][floor(random(grid[0].length))]
 	} while(first == last || !first.enable || !last.enable)
 
-	current = grid[floor(grid.length / 2)][floor(grid[0].length / 2)]
+	do {
+		current = grid[floor(random(grid.length))][floor(random(grid[0].length))]
+	} while(!current.enable)
+
 	nextStepMaze()
 }
-
-function draw() {
-	background(20)
-
-	for(let i=0; i<grid.length; i++){
-		for(let j=0; j<grid[i].length; j++){
-			grid[i][j].show()
-		}
-	}
-
-	if(current) {
-		fill(100)
-		noStroke()
-		rectMode(CORNER)
-		rect(current.x, current.y, boxSize)
-	}
-
-	distTo.forEach((value, key, innerMap) => {
-		if (value.score) {
-			fill(100)
-			noStroke()
-			text(Math.round(value.score * 1000) / 1000, key.x + 5, key.y + 15)
-		}
-	})
-
-	if(dfsstack.length > 1){	
-		for(let i=0; i<dfsstack.length-1; i++) {
-			stroke(200,255,40)
-			strokeWeight(2)  
-			line(dfsstack[i].x + boxSize/2, dfsstack[i].y + boxSize/2, dfsstack[i+1].x + boxSize/2, dfsstack[i+1].y + boxSize/2) 
-		}
-	}
-
-	if (done) {
-		fill(200,255,40)
-		noStroke()
-		rectMode(CENTER)
-		ellipse(first.x + boxSize / 2, first.y + boxSize / 2, boxSize / 2)
-		triangle(last.x + boxSize / 2, last.y + boxSize / 2 - boxSize / 3, last.x + boxSize / 2 - Math.sqrt(3) * boxSize / 6, last.y + boxSize / 2 + boxSize / 6, last.x + boxSize / 2 + Math.sqrt(3) * boxSize / 6, last.y + boxSize / 2 + boxSize / 6);
-	}
-}
-
 
 function nextStepMaze() {
 	background(20)
@@ -157,6 +123,56 @@ function onMazeGenerated() {
 	}
 }
 
+function draw() {
+	background(20)
+
+	// rectMode(CENTER)
+	// fill(255, 0, 0)
+	// ellipse(rightx, height / 2 + yfromcenter, 10, 10)
+	// ellipse(rightx, height / 2 - yfromcenter, 10, 10)
+
+	// fill(0, 255, 0)
+	// ellipse(leftx, height / 2 + yfromcenter, 10, 10)
+	// ellipse(leftx, height / 2 - yfromcenter, 10, 10)
+
+	for(let i=0; i<grid.length; i++){
+		for(let j=0; j<grid[i].length; j++){
+			grid[i][j].show()
+		}
+	}
+
+	if(current) {
+		fill(100)
+		noStroke()
+		rectMode(CORNER)
+		rect(current.x, current.y, boxSize)
+	}
+
+	distTo.forEach((value, key, innerMap) => {
+		if (value.score) {
+			fill(100)
+			noStroke()
+			text(Math.round(value.score * 1000) / 1000, key.x + 5, key.y + 15)
+		}
+	})
+
+	if(dfsstack.length > 1){	
+		for(let i=0; i<dfsstack.length-1; i++) {
+			stroke(200,255,40)
+			strokeWeight(2)  
+			line(dfsstack[i].x + boxSize/2, dfsstack[i].y + boxSize/2, dfsstack[i+1].x + boxSize/2, dfsstack[i+1].y + boxSize/2) 
+		}
+	}
+
+	if (done) {
+		fill(200,255,40)
+		noStroke()
+		rectMode(CENTER)
+		ellipse(first.x + boxSize / 2, first.y + boxSize / 2, boxSize / 2)
+		triangle(last.x + boxSize / 2, last.y + boxSize / 2 - boxSize / 3, last.x + boxSize / 2 - Math.sqrt(3) * boxSize / 6, last.y + boxSize / 2 + boxSize / 6, last.x + boxSize / 2 + Math.sqrt(3) * boxSize / 6, last.y + boxSize / 2 + boxSize / 6);
+	}
+}
+
 document.getElementById('regen').addEventListener('click', generateMaze)
 
 function setButtonsEnabled(val) {
@@ -165,4 +181,8 @@ function setButtonsEnabled(val) {
 	// document.getElementById('dijkstra').disabled = !val
 	document.getElementById('dfs').disabled = !val
 	document.getElementById('bfs').disabled = !val
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight)
 }

@@ -20,8 +20,40 @@
     <div class="container">
         <div class="stage">
             <h1>Benjamin Man</h1>
-            <p>I'm a freshman studying computer science and linguistics at UCLA. I enjoy creative coding, game development, and digital art among other things.</p>
-            <p>Anyways, here's a maze generation and solving algorithm visualization. Check out the <a href="https://github.com/benman604/benman604.github.io" style="font-weight: bold;">source</a> or the <a href="../" style="font-weight: bold;">older version</a> of this website.</p>
+            <div class="sidebyside">
+                <div>
+                    <img src="../pfp.jpeg" alt="my pfp" class="pfp">
+                </div>
+                <div>
+                    <p class="ipa">bɛnd͡ʒəmɪn mæn</p> <br>
+                    <p>Computer Science and Linguistics @ UCLA '27</p>
+                </div>
+            </div>
+            <p>
+                Hi, I'm Ben. I'm a freshman at UCLA, and I'm passionate about creative design and making an impact. I'm always looking for new opportunities to learn and grow.
+            </p>
+
+            <div class="btn-group">
+                <button id="prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="sketchName" style="width: 100%;">
+                    Maze
+                </button>
+                <button id="next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="links">
+                <a id="sourceLink" href="#">View source</a> |
+                <a id="sketchesbtn" href="#">All sketches</a> |
+                <a id="darkmodetoggle" href="#">Light Mode</a>
+                <br><br>
+            </div>
+
+
+            <!-- <p>Anyways, here's a maze generation and solving algorithm visualization. Check out the <a href="https://github.com/benman604/benman604.github.io" style="font-weight: bold;">source</a> or the <a href="../" style="font-weight: bold;">older version</a> of this website.</p> -->
             <!-- <br> -->
             <div class="grid">
                 <div class="half">
@@ -48,13 +80,12 @@
                 </div>
 
                 <div class="half">
-                    <button id="regen">Regenerate Maze</button>
+                    <button id="regen">Randomize Maze</button>
                     <button id="astar" disabled>Solve A*</button>
                     <!-- <button id="dijkstra" disabled>Solve Dijkstra's</button> -->
                     <button id="bfs" disabled>Solve BFS</button>
                     <button id="dfs" disabled>Solve DFS</button>
                 </div>
-
             </div>
             <br>
         </div>

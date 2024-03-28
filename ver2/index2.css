@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 #sketch{
     position: absolute;
@@ -23,32 +24,36 @@ body {
 
 h1 {
     font-weight: 600;
-}
-
-p {
-    font-weight: 100;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 a {
     color: lightblue;
-    font-weight: 400;
     font-size: large;
     text-decoration: none;
 }
 
 a:hover {
     color: white;
-    font-weight: 600;
     cursor: pointer;
+}
+
+.container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 .stage {
     width: 316px;
-    height: 458px;
+    height: 550px;
     margin: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    border: 1px solid white;
+    border: 2px solid rgba(255, 255, 255, 0.705);
+    background-color: rgb(20, 20, 20);
 }
 
 .grid{
@@ -75,4 +80,58 @@ button:hover:not(:disabled) {
 button:disabled {
     border: 1px solid rgb(90, 90, 90);
     color: darkgray
+}
+
+.btn-group {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-group button {
+    width: max-content;
+    padding: 10px 10px; 
+    cursor: pointer; 
+    float: left; 
+    margin-bottom: 10px;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; 
+}
+
+.btn-group button:hover:not(:nth-child(0)) {
+    background-color: white;
+    color: black;
+}
+
+.sidebyside {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebyside * {
+    margin: 0;
+    padding: 0;
+}
+
+/* everything inside sidebyside that isnt the last will have margin right */
+.sidebyside > *:not(:last-child) {
+    margin-right: 20px;
+}
+
+.pfp{
+    width: 90px;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.links {
+    text-align: center;
+}
+
+.links a {
+    font-size: small;
 }
