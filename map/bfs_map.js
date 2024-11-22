@@ -1,26 +1,32 @@
-let bfsqueue = []
-
 document.getElementById('mbfs').addEventListener('click', () => {
-    path = [];
-    bfsqueue = [];
-    visited.clear();
-    backtrace.clear();
+	if (startSelection.state === "Selecting" || endSelection.state === "Selecting") return;
     prepareForSearch();
+	startSearch();
 
-    if (startSelection.nodeId == null || endSelection.nodeId == null) return;
+	readyToStartNextSearch = false;
     bfs(startSelection.nodeId, endSelection.nodeId);
 });
 
 async function bfs(start, end) {
+	let searchID = currentSearchID;
+	let bfsqueue = [];
     let tick = 0;
     let drawBuffer = [];  // Buffer to collect lines to draw
 
     bfsqueue.push(start);
     while (bfsqueue.length > 0) {
+		// end current search if new search is started or clicked select button
+		if (searchID != currentSearchID || startSelection.state === "Selecting" || endSelection.state === "Selecting") {
+			bfsqueue = []
+			drawBuffer = []
+			readyToStartNextSearch = true;
+			return;
+		}
         let current = bfsqueue.shift();
+		console.log(searchID, currentSearchID)
 
         if (tick % waitOneMsEvery === 0) {
-            await new Promise(resolve => setTimeout(resolve, 0.1));
+            await new Promise(resolve => setTimeout(resolve, 1));
         }
         tick++;
 
@@ -38,6 +44,7 @@ async function bfs(start, end) {
             path.reverse();
             path.push(end);
             console.log("Path found: ", path);
+            endSearch();
             return;
         }
 
@@ -66,4 +73,5 @@ async function bfs(start, end) {
     if (!found) {
         console.log("No path found");
     }
+	endSearch();
 }

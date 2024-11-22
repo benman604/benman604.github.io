@@ -32,6 +32,8 @@ let minLat, maxLat, minLon, maxLon;
 let mapGraphics;
 let mapPathOverlay;
 
+let currentSearchID = -1
+let readyToStartNextSearch = true
 let found = false
 let backtrace = new Map()
 let visited = new Set()
@@ -382,11 +384,13 @@ const selEndBtn = document.getElementById('sel-end');
 selStartBtn.addEventListener('click', () => {
   startSelection.state = "Selecting";
   selStartBtn.innerText = "Selecting start";
+  prepareForSearch();
 });
 
 selEndBtn.addEventListener('click', () => {
   endSelection.state = "Selecting";
   selEndBtn.innerText = "Selecting end";
+  prepareForSearch();
 });
 
 function onUpdateColorTheme() {
@@ -400,6 +404,10 @@ function onUpdateColorTheme() {
 }
 
 function prepareForSearch() {
+  path = [];
+  pq = new PriorityQueue();
+  distTo.clear();
+  visited.clear();
   found = false;
   waitOneMsEvery = _waitOneMsEvery
 
@@ -417,4 +425,14 @@ function setButtonsEnabled(val) {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight)
+}
+
+function startSearch() {
+  currentSearchID = floor(millis());
+  console.log("starting search", currentSearchID)
+}
+
+function endSearch() {
+  currentSearchID = -1;
+  readyToStartNextSearch = true;
 }
