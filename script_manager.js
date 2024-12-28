@@ -32,10 +32,10 @@ let sketches = {
         displayname: "Maze",
         source: "https://github.com/benman604/benman604.github.io/tree/v2/maze"
     },
-    "polar": {
+    "balls": {
         scripts: ["polar/polar.js"],
         buttons: ".buttons-polar",
-        displayname: "Polar",
+        displayname: "Bouncing Balls",
         source: "https://github.com/benman604/benman604.github.io/tree/v2/polar"
     }
 }
@@ -54,11 +54,19 @@ document.querySelectorAll(sketches[currSketch].buttons).forEach(element => {
   element.style.display = 'block';
 });
 
-for (const [key, value] of Object.entries(sketches)) {
-    if (key !== currSketch) {
+const sketchesList = document.getElementById("sketchesList");
+
+for (const [name, value] of Object.entries(sketches)) {
+    if (name !== currSketch) {
         document.querySelectorAll(value.buttons).forEach(element => {
             element.style.display = 'none';
         });
+
+        let a = document.createElement("a")
+        a.innerText = value.displayname
+        a.href = `?sketch=${name}`;
+        sketchesList.appendChild(a);
+        sketchesList.appendChild(document.createElement("br"));
     }
 }
 
@@ -87,4 +95,30 @@ prevBtn.onclick = () => {
 nextBtn.onclick = () => {
     curri = (curri + 1) % skeys.length;
     window.location.href = `?sketch=${skeys[curri]}`;
+}
+
+const whatsThisButton = document.getElementById("whatsThis");
+const whatsThisModal = document.getElementById("whatsThisModal");
+const whatsThisClose = document.getElementById("whatsThisClose");
+
+whatsThisButton.onclick = () => {
+    whatsThisModal.style.display = (whatsThisModal.style.display == "none") ? "block" : "none";
+    sketchesModal.style.display = "none";
+}
+
+whatsThisClose.onclick = () => {
+    whatsThisModal.style.display = "none";
+}
+
+const sketchesButton = document.getElementById("allSketches");
+const sketchesModal = document.getElementById("allSketchesModal");
+const sketchesClose = document.getElementById("allSketchesClose");
+
+sketchesButton.onclick = () => {
+    sketchesModal.style.display = (sketchesModal.style.display == "none") ? "block" : "none";
+    whatsThisModal.style.display = "none";
+}
+
+sketchesClose.onclick = () => {
+    sketchesModal.style.display = "none";
 }

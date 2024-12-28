@@ -72,8 +72,13 @@
     .stage {
         width: 100% !important;
         height: fit-content !important;
-        border-radius: 0px !important;
         margin-bottom: 0px !important;
+    }
+
+    .stage-modal {
+        position: fixed !important;
+        height: fit-content !important;
+        width: calc(100% - 64px) !important;
     }
     
     .container{
@@ -115,7 +120,7 @@ h1 {
 
 a {
     color: var(--link);
-    font-size: large;
+    /* font-size: large; */
     text-decoration: none;
 }
 
@@ -140,6 +145,12 @@ a:hover {
     padding-right: 20px;
     border: 2px solid var(--outline);
     background-color: var(--background);
+}
+
+.stage-modal {
+    height: fit-content;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .bottomright {

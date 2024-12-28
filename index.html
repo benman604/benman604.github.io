@@ -8,6 +8,9 @@
 
     <script src="https://kit.fontawesome.com/43dc370da9.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js" id="p5"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
     <script src="script_manager.js" defer></script>
 
     <link rel="stylesheet" href="index.css">
@@ -30,7 +33,7 @@
                 </div>
             </div>
             <p>
-                Hi, I'm Ben. I'm a sophmore at UCLA, and I'm passionate about creative design and making an impact. I'm always looking for new opportunities to learn and grow.
+                Hi, I'm Ben. I'm a student at UCLA, and I'm passionate about creative design and making an impact. I'm always looking for new opportunities to learn and grow.
             </p>
 
             <div class="btn-group">
@@ -46,8 +49,8 @@
             </div>
 
             <div class="links">
-                <a id="sourceLink" href="#" style="margin-right: 20px;">View source</a>
-                <!-- <a id="sketchesbtn" href="#" style="margin-left: 10px; margin-right: 10px;">All sketches</a> -->
+                <a id="allSketches" href="#">All Sketches</a>
+                <a id="whatsThis" href="#" style="margin-left: 10px; margin-right: 10px;">Whats This?</a>
                 <a id="toggleTheme" href="#">Light Mode</a>
                 <br><br>
             </div>
@@ -99,6 +102,40 @@
             <br>
         </div> <!-- stage -->
 
+        <div class="stage stage-modal" id="whatsThisModal" style="display: none;">
+            <a href="#" id="whatsThisClose">Close</a>
+            <br>
+
+            <div class="buttons-map">
+                <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> visualization of map pathfinding algorithms. You're probably looking at San Francisco, Los Angeles, or New York City.</p>
+                <p>The map data is from <a target="_blank" href="https://www.openstreetmap.org/">OpenStreetMap</a>'s <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Overpass_API">Overpass API</a>, with <a target='_blank' href="https://en.wikipedia.org/wiki/Reverse_geocoding">reverse geocoding</a> also from OSM.</p>
+                <p>The <a target="_blank" href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* algorithm</a> here uses a heuristic function of Eudlidean distance.</p>
+            </div>
+
+            <div class="buttons-maze">
+                <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> visualization of maze generation and solving algorithms. The maze is generated using <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Randomized_depth-first_search">depth-first search</a>.</p>
+                <p>The <a target="_blank" href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* algorithm</a> uses a heuristic function of <a target="_blank" href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance</a>, which is displayed in each visited cell of the maze.</p>
+            </div>
+
+            <div class="buttons-polar">
+                <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> simulation of some balls bouncing around a polar curve, particularly a <a target="_blank" href="https://en.wikipedia.org/wiki/Rose_(mathematics)">Rose curve</a> of the form</p>
+                <p>\( r(\theta) = a + \sin(a \theta) \)</p>
+                <p>where \( a \) is the number of petals.</p>
+                <p>Some simple custom physics logic controls the movement of the balls, where edge collisions use</p>
+                <p>\( \frac{dr}{d\theta} = a \cos(a \theta) \)</p>
+                <p>\( \frac{dx}{d\theta} = \frac{dr}{d\theta} \cos(\theta) - \sin(\theta) r(\theta) \)</p>
+                <p>\( \frac{dy}{d\theta} = \frac{dr}{d\theta} \sin(\theta) + \cos(\theta) r(\theta) \)</p>
+            </div>
+        
+            <a id="sourceLink" href="#" target="_blank">View source</a>
+        </div> <!-- stage-modal (what's this?) -->
+
+        <div class="stage stage-modal" id="allSketchesModal" style="display: none;">
+            <a href="#" id="allSketchesClose">Close</a>
+            <br><br>
+            <div id="sketchesList"></div>
+        </div> <!-- stage-modal (sketches) -->
+
         <div class="bottomright buttons-map">
             <form class="grid" style="gap: 0px 17px" id="searchform">
                 <input type="text" name="query" placeholder="Search for a place...">
@@ -113,12 +150,5 @@
             window.location.href = "mailto:8k1x54yhv" + "@rel" + "ay.firefox.com"
         })
     </script>
-
-    <!-- <script src="cell.js"></script>
-    <script src="astar_solve.js"></script>
-    <script src="bfs_solve.js"></script>
-    <script src="dfs_solve.js"></script>
-    <script src="maze.js"></script>
-    <script src="theme.js"></script> -->
 </body>
 </html>

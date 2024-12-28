@@ -1,9 +1,10 @@
 let curvesize = 40
+let curvesize_multiplier = 1
 const numlines = 100
 const numballs = 3
 const ballsize = 30
-const xoff = 368 / 2
-const yoff = 0
+let xoff = 368 / 2
+let yoff = 0
 const gravity = 0.4
 const elasticity = 0.96
 
@@ -20,6 +21,7 @@ document.getElementById('newshape').addEventListener('click', () => {
         case 6: curvesize = 35; break
         case 7: curvesize = 30; break
     }
+    curvesize *= curvesize_multiplier
 })
 
 document.getElementById('addball').addEventListener('click', () => {
@@ -185,3 +187,23 @@ function windowResized() {
 }
 
 function onUpdateColorTheme() {}
+
+// for mobile devices
+const mediaQuery = window.matchMedia('(max-width: 430px)');
+
+function checkMediaQuery() {
+  if (mediaQuery.matches) {
+    xoff = 0;
+    yoff = 525 / 2;
+    curvesize_multiplier = 0.7;
+    curvesize = 40 * curvesize_multiplier;
+  } else {
+    xoff = 368 / 2;
+    yoff = 0;
+    curvesize_multiplier = 1;
+    curvesize = 40 * curvesize_multiplier;
+  }
+}
+
+checkMediaQuery();
+mediaQuery.addEventListener('change', checkMediaQuery);
