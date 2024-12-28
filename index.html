@@ -16,6 +16,17 @@
     <link rel="stylesheet" href="index.css">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VSSTZYDR2Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VSSTZYDR2Y');
+</script>
+
 <body>
 
     <div id="sketch"></div>
@@ -55,10 +66,6 @@
                 <br><br>
             </div>
 
-
-            <!-- <p>Anyways, here's a maze generation and solving algorithm visualization. Check out the <a href="https://github.com/benman604/benman604.github.io" style="font-weight: bold;">source</a> or the <a href="../" style="font-weight: bold;">older version</a> of this website.</p> -->
-            <!-- <br> -->
-
             <div class="buttons-map">
                 <div class="grid" style="margin-bottom: 20px;">
                     <div class="half">
@@ -78,7 +85,7 @@
                     <!-- <a href="https://benjamin-man.itch.io/" class="fa-brands fa-itch-io"></a> -->
                     <!-- <a href="https://www.youtube.com/channel/UCttQGQE5lg9vOBdDMSe2rLA" class="fa-brands fa-youtube"></a> -->
                     <a href="https://www.linkedin.com/in/benjamin-man-839b69196/" class="fa-brands fa-linkedin"></a>
-                    <a class="fa-solid fa-envelope" id="clickmail"></a>
+                    <a class="fa-solid fa-envelope" id="clickmail" href="mailto:8k1x54yhv@relay.firefox.com"></a>
                 </div>
 
                 <div class="half">
@@ -113,7 +120,7 @@
             </div>
 
             <div class="buttons-maze">
-                <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> visualization of maze generation and solving algorithms. The maze is generated using <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Randomized_depth-first_search">depth-first search</a>.</p>
+                <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> visualization of maze generation and solver algorithms. The maze is generated using <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Randomized_depth-first_search">depth-first search</a>.</p>
                 <p>The <a target="_blank" href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* algorithm</a> uses a heuristic function of <a target="_blank" href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance</a>, which is displayed in each visited cell of the maze.</p>
             </div>
 
@@ -134,6 +141,8 @@
             <a href="#" id="allSketchesClose">Close</a>
             <br><br>
             <div id="sketchesList"></div>
+            <br>
+            <a href="old">Old version of this site</a>
         </div> <!-- stage-modal (sketches) -->
 
         <div class="bottomright buttons-map">

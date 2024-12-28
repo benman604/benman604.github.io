@@ -13,7 +13,8 @@
 
     --light-background: rgb(255, 255, 255);
     --light-outline: rgb(120, 120, 120);
-    --light-highlight: rgb(211, 255, 83);
+    /* --light-highlight: rgb(211, 255, 83); */
+    --light-highlight: rgb(202, 182, 0);
     --light-text: black;
     --light-link: #0077ff;
     --light-link-hover: darkblue;
@@ -127,6 +128,17 @@ a {
 a:hover {
     color: var(--link-hover);
     cursor: pointer;
+    text-decoration: underline;
+}
+
+a.activemodal {
+
+    color: var(--highlight);
+}
+
+a.activemodal:hover {
+    text-decoration: none;
+    cursor: default;
 }
 
 .container {

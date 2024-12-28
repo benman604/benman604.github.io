@@ -97,28 +97,52 @@ nextBtn.onclick = () => {
     window.location.href = `?sketch=${skeys[curri]}`;
 }
 
-const whatsThisButton = document.getElementById("whatsThis");
-const whatsThisModal = document.getElementById("whatsThisModal");
-const whatsThisClose = document.getElementById("whatsThisClose");
+// Define all the modals and their associated buttons and close buttons
+const allModals = [
+    {
+        buttonId: "whatsThis",
+        modalId: "whatsThisModal",
+        closeId: "whatsThisClose"
+    },
+    {
+        buttonId: "allSketches",
+        modalId: "allSketchesModal",
+        closeId: "allSketchesClose"
+    }
+];
 
-whatsThisButton.onclick = () => {
-    whatsThisModal.style.display = (whatsThisModal.style.display == "none") ? "block" : "none";
-    sketchesModal.style.display = "none";
+// Function to initialize modals
+function initializeModals(modals) {
+    modals.forEach(({ buttonId, modalId, closeId }) => {
+        const button = document.getElementById(buttonId);
+        const modal = document.getElementById(modalId);
+        const close = document.getElementById(closeId);
+
+        // Toggle modal visibility when the button is clicked
+        button.onclick = () => {
+            // Open the clicked modal
+            modal.style.display = (modal.style.display === "none") ? "block" : "none";
+            button.classList.toggle("activemodal");
+            // Close all other modals
+            modals.forEach(({ modalId: otherModalId, buttonId: otherButtonId }) => {
+                if (otherModalId !== modalId) {
+                    const otherModal = document.getElementById(otherModalId);
+                    const otherButton = document.getElementById(otherButtonId);
+                    if (otherModal) {
+                        otherModal.style.display = "none"
+                        otherButton.classList.remove("activemodal");
+                    };
+                }
+            });
+        };
+
+        // Close modal when the close button is clicked
+        close.onclick = () => {
+            modal.style.display = "none";
+            button.classList.remove("activemodal");
+        };
+    });
 }
 
-whatsThisClose.onclick = () => {
-    whatsThisModal.style.display = "none";
-}
-
-const sketchesButton = document.getElementById("allSketches");
-const sketchesModal = document.getElementById("allSketchesModal");
-const sketchesClose = document.getElementById("allSketchesClose");
-
-sketchesButton.onclick = () => {
-    sketchesModal.style.display = (sketchesModal.style.display == "none") ? "block" : "none";
-    whatsThisModal.style.display = "none";
-}
-
-sketchesClose.onclick = () => {
-    sketchesModal.style.display = "none";
-}
+// Initialize all modals
+initializeModals(allModals);
