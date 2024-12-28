@@ -1,6 +1,5 @@
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
-let currSketch = 0;
 
 let addScript = (info) => { 
     return new Promise(function(resolve, reject) { 
@@ -42,9 +41,9 @@ let sketches = {
 
 let scripts = [];
 const params = new URLSearchParams(window.location.search);
-if(params.has("sketch") && sketches[params.get("sketch")] !== undefined) {
-    currSketch = params.get("sketch");
-    scripts = sketches[params.get("sketch")].scripts
+let currSketch = params.get("sketch");
+if(params.has("sketch") && sketches[currSketch] !== undefined) {
+    scripts = sketches[currSketch].scripts
 } else {
     currSketch = "map"
     scripts = sketches[currSketch].scripts

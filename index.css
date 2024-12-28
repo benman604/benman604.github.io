@@ -72,7 +72,7 @@
 @media only screen and (max-width: 430px) {
     .stage {
         width: 100% !important;
-        height: fit-content !important;
+        height: fit-content;
         margin-bottom: 0px !important;
     }
 

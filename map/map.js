@@ -106,8 +106,9 @@ async function fetchGeoData(coord, useDefault = false) {
     coord = place.coord;
   }
 
+  
   let w = windowWidthMiles; // viewport width in miles
-  let h = windowHeight * windowWidthMiles / windowWidth; 
+  let h = height * windowWidthMiles / windowWidth; 
 
   let centerLat = parseFloat(coord.split(",")[0]);
   let centerLon = parseFloat(coord.split(",")[1]);
@@ -185,13 +186,18 @@ function screenLoadingState(message) {
 }
 
 async function setup() {
-  // document.querySelectorAll('.buttons-map').forEach(element => {
-  //   element.style.visibility = 'visible';
-  // });
-  // document.getElementById('buttons-maze').style.display = 'none';
+  let canvasHeight = windowHeight;
 
-  let canvas = createCanvas(windowWidth, windowHeight);
+  // mobile devices
+  if (windowWidth < 430) {
+    document.getElementById('sketch').style.top = '564px'
+    canvasHeight = window.innerHeight - 564;
+    windowWidthMiles = 10;
+  }
+
+  let canvas = createCanvas(windowWidth, canvasHeight);
 	canvas.parent('sketch');
+
 
   mapGraphics = createGraphics(width, height);
   mapPathOverlay = createGraphics(width, height);
@@ -219,11 +225,15 @@ function draw() {
   if (startSelection.state == "Selected") {
     let node = nodesMap.get(startSelection.nodeId); 
     ellipse(node.x, node.y, 20, 20);
+  } else if (startSelection.state == "Selecting") {
+    ellipse(mouseX, mouseY, 20, 20);
   }
+
   if (endSelection.state == "Selected") {
     let node = nodesMap.get(endSelection.nodeId);
     triangle(node.x, node.y - 10, node.x - 10, node.y + 10, node.x + 10, node.y + 10);
-    // triangle(endSelection.x, endSelection.y - 10, endSelection.x - 10, endSelection.y + 10, endSelection.x + 10, endSelection.y + 10);
+  } else if (endSelection.state == "Selecting") {
+    triangle(mouseX, mouseY - 10, mouseX - 10, mouseY + 10, mouseX + 10, mouseY + 10);
   }
 
   if (path.length > 0) {
@@ -292,6 +302,18 @@ function getGeodataName(data) {
 
 async function mousePressed() {
   if (!highwaysData) return;
+
+  let startloc = nodesMap.get(startSelection.nodeId);
+  let endloc = nodesMap.get(endSelection.nodeId);
+  
+  if (dist(mouseX, mouseY, startloc.x, startloc.y) < 20 && startSelection.state === "Selected") {
+    beginSelectingStart();
+    return;
+  } else if (dist(mouseX, mouseY, endloc.x, endloc.y) < 20 && endSelection.state === "Selected") {
+    beginSelectingEnd();
+    return;
+  }
+
   if (!(startSelection.state === "Selecting" || endSelection.state === "Selecting")) return;
 
   let coord = xyToLatLon(mouseX, mouseY);
@@ -311,6 +333,7 @@ async function mousePressed() {
     endSelection.state = "Selected";
     selEndBtn.innerText = name;
   }
+
 }
 
 document.getElementById('searchform').addEventListener('submit', async (e) => {
@@ -378,20 +401,23 @@ async function selectRandomEndpoints() {
   selEndBtn.innerText = getGeodataName(data);
 }
 
-const selStartBtn = document.getElementById('sel-start');
-const selEndBtn = document.getElementById('sel-end');
-
-selStartBtn.addEventListener('click', () => {
+function beginSelectingStart() {
   startSelection.state = "Selecting";
   selStartBtn.innerText = "Selecting start";
   prepareForSearch();
-});
+}
 
-selEndBtn.addEventListener('click', () => {
+function beginSelectingEnd() {
   endSelection.state = "Selecting";
   selEndBtn.innerText = "Selecting end";
   prepareForSearch();
-});
+}
+
+const selStartBtn = document.getElementById('sel-start');
+const selEndBtn = document.getElementById('sel-end');
+
+selStartBtn.addEventListener('click', beginSelectingStart);
+selEndBtn.addEventListener('click', beginSelectingEnd);
 
 function onUpdateColorTheme() {
   drawHighways();

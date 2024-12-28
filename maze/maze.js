@@ -51,7 +51,7 @@ function generateMaze() {
 
 		for (let x = leftx; x < windowWidth - boxSize; x += boxSize){
 			grid.push([])
-			for(let y = bottomOfStage - _strokeWeight - 1; y < height - boxSize; y += boxSize){
+			for(let y = bottomOfStage - _strokeWeight - 1; y < height - boxSize - padding/2; y += boxSize){
 				let cell = new Cell(i, j, x, y)
 				cell.enable = true
 				grid[i].push(cell)
