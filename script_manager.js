@@ -55,14 +55,14 @@ document.querySelectorAll(sketches[currSketch].buttons).forEach(element => {
 
 const sketchesList = document.getElementById("sketchesList");
 
-for (const [name, value] of Object.entries(sketches)) {
+for (const [name, sketch] of Object.entries(sketches)) {
     if (name !== currSketch) {
-        document.querySelectorAll(value.buttons).forEach(element => {
+        document.querySelectorAll(sketch.buttons).forEach(element => {
             element.style.display = 'none';
         });
 
         let a = document.createElement("a")
-        a.innerText = value.displayname
+        a.innerText = sketch.displayname
         a.href = `?sketch=${name}`;
         sketchesList.appendChild(a);
         sketchesList.appendChild(document.createElement("br"));

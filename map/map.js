@@ -182,6 +182,7 @@ function screenLoadingState(message) {
   mapGraphics.fill(outlineColor);
   mapGraphics.strokeWeight(1);
   mapGraphics.textSize(16);
+  mapGraphics.textAlign(CENTER)
   mapGraphics.text((message) ? message : "Loading...", width/2, height/2); 
 }
 

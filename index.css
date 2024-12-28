@@ -85,6 +85,10 @@
     .container{
         height: fit-content !important;
     }
+
+    #sel-start, #sel-end {
+        width: 100% !important;
+    }
 }
 
 #sketch{
