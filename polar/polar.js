@@ -1,4 +1,4 @@
-let curvesize = 40
+let curvesize = 250
 let curvesize_multiplier = 1
 const numlines = 100
 const numballs = 3
@@ -14,14 +14,6 @@ document.getElementById('newshape').addEventListener('click', () => {
     while (olda == a) {
         a = random([3,4,5,6,7])
     }
-    switch(a) {
-        case 3: curvesize = 70; break
-        case 4: curvesize = 60; break
-        case 5: curvesize = 40; break
-        case 6: curvesize = 35; break
-        case 7: curvesize = 30; break
-    }
-    curvesize *= curvesize_multiplier
 })
 
 document.getElementById('addball').addEventListener('click', () => {
@@ -34,8 +26,8 @@ document.getElementById('remball').addEventListener('click', () => {
     balls.pop();
 })
 
-const r = (t) => curvesize * (a + sin(a * t + millis() / 1000))
-const drdt = (t) => curvesize * a * cos(a * t + millis() / 1000)
+const r = (t) => curvesize * (1 + sin(a * t + millis() / 1000) / a)
+const drdt = (t) => curvesize * cos(a * t + millis() / 1000)
 const dx = (v) => drdt(v) * cos(v) - sin(v) * r(v);
 const dy = (v) => drdt(v) * sin(v) + cos(v) * r(v);
 
@@ -194,14 +186,14 @@ const mediaQuery = window.matchMedia('(max-width: 430px)');
 function checkMediaQuery() {
   if (mediaQuery.matches) {
     xoff = 0;
-    yoff = 525 / 2;
-    curvesize_multiplier = 0.7;
-    curvesize = 40 * curvesize_multiplier;
+    yoff = 564 / 2;
+    curvesize_multiplier = 0.5;
+    curvesize = 250 * curvesize_multiplier;
   } else {
     xoff = 368 / 2;
     yoff = 0;
     curvesize_multiplier = 1;
-    curvesize = 40 * curvesize_multiplier;
+    curvesize = 250 * curvesize_multiplier;
   }
 }
 

@@ -174,12 +174,6 @@ a.activemodal:hover {
     bottom: 0;
     right: 0;
     margin: 15px;
-    /* padding-left: 10px; */
-    /* padding-right: 10px; */
-    /* padding-top: 5px; */
-    /* padding-bottom: 5px; */
-    /* border: 1px solid var(--outline); */
-    /* background-color: var(--background); */
     width: 200px;
 }
 
@@ -286,6 +280,7 @@ button:disabled {
 
 .links {
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .links a {
@@ -311,6 +306,7 @@ button:disabled {
     color: black;
     background-color: var(--highlight);
     border: 1px solid var(--highlight);
+    text-decoration: none;
 }
 
 .mini {

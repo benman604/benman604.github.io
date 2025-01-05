@@ -45,6 +45,7 @@
             </div>
             <p>
                 Hi, I'm Ben. I'm a student at UCLA, and I'm passionate about creative design and making an impact. I'm always looking for new opportunities to learn and grow.
+                Check our my <a href="#">projects</a> and <a href="#">resume/CV</a>.
             </p>
 
             <div class="btn-group">
@@ -63,11 +64,10 @@
                 <a id="allSketches" href="#">All Sketches</a>
                 <a id="whatsThis" href="#" style="margin-left: 10px; margin-right: 10px;">Whats This?</a>
                 <a id="toggleTheme" href="#">Light Mode</a>
-                <br><br>
             </div>
 
             <div class="buttons-map">
-                <div class="grid" style="margin-bottom: 20px;">
+                <div class="grid" style="margin-bottom: 10px;">
                     <div class="half">
                         <p class="mini">Origin ●</p>
                         <button id="sel-start">Select Start</button>
@@ -88,7 +88,7 @@
                     <a class="fa-solid fa-envelope" id="clickmail" href="mailto:8k1x54yhv@relay.firefox.com"></a>
                 </div>
 
-                <div class="half">
+                <div class="half" style="max-width: 141px;">
                     <div class="buttons-maze" style="display: none;">
                         <button id="regen">Randomize Maze</button>
                         <button id="astar" disabled>Solve A*</button>
@@ -126,13 +126,13 @@
 
             <div class="buttons-polar">
                 <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> simulation of some balls bouncing around a polar curve, particularly a <a target="_blank" href="https://en.wikipedia.org/wiki/Rose_(mathematics)">Rose curve</a> of the form</p>
-                <p>\( r(\theta) = a + \sin(a \theta) \)</p>
+                <p>\( r(\theta) = 1 + \frac{\sin(a \theta)}{a} \)</p>
                 <p>where \( a \) is the number of petals.</p>
-                <p>Some simple custom physics logic controls the movement of the balls, where edge collisions use</p>
+                <!-- <p>Some simple custom physics logic controls the movement of the balls, where edge collisions use</p>
                 <p>\( \frac{dr}{d\theta} = a \cos(a \theta) \)</p>
                 <p>\( \frac{dx}{d\theta} = \frac{dr}{d\theta} \cos(\theta) - \sin(\theta) r(\theta) \)</p>
                 <p>\( \frac{dy}{d\theta} = \frac{dr}{d\theta} \sin(\theta) + \cos(\theta) r(\theta) \)</p>
-                <p>to get the orthogonal angle to the curve.</p>
+                <p>to get the orthogonal angle to the curve.</p> -->
             </div>
         
             <a id="sourceLink" href="#" target="_blank">View source</a>

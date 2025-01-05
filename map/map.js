@@ -61,6 +61,16 @@ function latLonToXY(lat, lon) {
   return {x, y};
 }
 
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  let R = 6371; // Radius of the earth in km
+  let dLat = radians(lat2 - lat1);
+  let dLon = radians(lon2 - lon1);
+  let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(radians(lat1)) * Math.cos(radians(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c * 1000; // Distance in meters
+  // distnace in miles
+}
+
 async function fetchCurrentGeo() {
   let response = await fetch(ipGeoAPI);
   let data = await response.json();
