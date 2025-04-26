@@ -167,5 +167,3 @@ document.getElementById('hide-panel').addEventListener('click', () => {
 
 // Initialize all modals
 initializeModals(allModals);
-
-document.getElementById("projects").click();

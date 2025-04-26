@@ -45,7 +45,7 @@ function generateMaze() {
 
 	if (windowWidth < 430) {
 
-		let bottomOfStage = document.getElementsByClassName('container')[0].getBoundingClientRect().bottom
+		let bottomOfStage = document.getElementById('panel').getBoundingClientRect().bottom 
 		let stageWidth = windowWidth - padding - _strokeWeight
 		boxSize = stageWidth / 15
 
