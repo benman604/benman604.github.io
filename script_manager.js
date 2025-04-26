@@ -46,6 +46,10 @@ if(params.has("sketch") && sketches[currSketch] !== undefined) {
     scripts = sketches[currSketch].scripts
 } else {
     currSketch = "map"
+    // if document < 430px wide, default to maze sketch
+    if (window.innerWidth < 430) {
+        currSketch = "maze"
+    }
     scripts = sketches[currSketch].scripts
 }
 

@@ -82,6 +82,24 @@
         width: calc(100% - 64px) !important;
     }
 
+    .stage-modal-wide {
+        top: 0;
+        bottom: 0 !important;
+        height: 93% !important;
+    }
+
+    .project {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project img {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
     .stage-container {
         all: unset;
         display: contents;
