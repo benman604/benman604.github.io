@@ -68,14 +68,8 @@
     --outline-disabled: var(--dark-outline-disabled);
 }
 
-/* for screen width < 430 */
-@media only screen and (max-width: 430px) {
-    .stage {
-        width: 100% !important;
-        height: fit-content;
-        margin-bottom: 0px !important;
-    }
-
+/* for screen width < 850 */
+@media only screen and (max-width: 850px) {
     .stage-modal, .stage-modal-wide {
         position: fixed !important;
         height: fit-content !important;
@@ -86,6 +80,27 @@
         top: 0;
         bottom: 0 !important;
         height: 93% !important;
+    }
+
+    .project {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project img {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+}
+
+/* for screen width < 430 */
+@media only screen and (max-width: 430px) {
+    .stage {
+        width: 100% !important;
+        height: fit-content;
+        margin-bottom: 0px !important;
     }
 
     .project {
@@ -205,6 +220,7 @@ a.activemodal:hover {
     height: calc(100% - 70px);
     margin-bottom: 20px;
     overflow: scroll;
+    padding: 40px;
 }
 
 .bottomright {
@@ -374,7 +390,7 @@ button:disabled {
 
 .project {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .project img {
@@ -384,6 +400,7 @@ button:disabled {
 
 .project .project-info {
     margin-left: 20px;
+    width: 100%;
 }
 
 .project h3 {

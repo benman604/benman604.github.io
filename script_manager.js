@@ -47,7 +47,7 @@ if(params.has("sketch") && sketches[currSketch] !== undefined) {
 } else {
     currSketch = "map"
     // if document < 430px wide, default to maze sketch
-    if (window.innerWidth < 430) {
+    if (window.innerWidth < 850) {
         currSketch = "maze"
     }
     scripts = sketches[currSketch].scripts
@@ -171,3 +171,5 @@ document.getElementById('hide-panel').addEventListener('click', () => {
 
 // Initialize all modals
 initializeModals(allModals);
+
+// document.getElementById('projects').click();
