@@ -63,7 +63,7 @@ function generateMaze() {
 
 	} else {
 
-		boxSize = 27.5
+		// boxSize = 27.5
 		for (let x = leftx; x < windowWidth - boxSize - padding / 2; x += boxSize){
 			grid.push([])
 			for(let y = startY; y < endY; y += boxSize){

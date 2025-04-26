@@ -81,6 +81,15 @@
         height: fit-content !important;
         width: calc(100% - 64px) !important;
     }
+
+    .stage-container {
+        all: unset;
+        display: contents;
+    }
+
+    #hide-panel {
+        display: none;
+    }
     
     .container{
         height: fit-content !important;
