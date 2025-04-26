@@ -32,7 +32,8 @@
     <div id="sketch"></div>
 
     <div class="container">
-        <div class="stage">
+        <div class="stage-container">
+        <div class="stage" style="margin-bottom: 0;" id="panel">
             <h1>Benjamin Man</h1>
             <div class="sidebyside">
                 <div>
@@ -58,7 +59,7 @@
                 <button id="next" class="notransition">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
-            </div>
+            </div> <!-- sketch selector -->
 
             <div class="links">
                 <a id="allSketches" href="#">All Sketches</a>
@@ -72,8 +73,8 @@
                         <p class="mini">Origin ●</p>
                         <button id="sel-start">Select Start</button>
                     </div>
-                    <div class="half">
-                        <p class="mini" style="text-align: right;">▲ Destination</p>
+                    <div class="half" style="align-items: right; text-align: right; justify-content: right;">
+                        <p class="mini">▲ Destination</p>
                         <button id="sel-end">Select End</button>
                     </div>
                 </div>
@@ -108,6 +109,8 @@
             </div>
             <br>
         </div> <!-- stage -->
+        <a href="#" id="hide-panel">Hide panel</a>
+        </div> <!-- stage-container -->
 
         <div class="stage stage-modal" id="whatsThisModal" style="display: none;">
             <a href="#" id="whatsThisClose">Close</a>
@@ -115,8 +118,8 @@
 
             <div class="buttons-map">
                 <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> visualization of map pathfinding algorithms. You're probably looking at San Francisco, Los Angeles, or New York City.</p>
-                <p>The map data is from <a target="_blank" href="https://www.openstreetmap.org/">OpenStreetMap</a>'s <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Overpass_API">Overpass API</a>, with <a target='_blank' href="https://en.wikipedia.org/wiki/Reverse_geocoding">reverse geocoding</a> also from OSM.</p>
-                <p>The <a target="_blank" href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* algorithm</a> here uses a heuristic function of Eudlidean distance.</p>
+                <p>The map data is from <a target="_blank" href="https://www.openstreetmap.org/">OpenStreetMap</a>'s <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Overpass_API">Overpass API</a>, with reverse geocoding also from OSM.</p>
+                <p>Click the circle or triangle to change the origin or destination. You can also set the map to wherever you like with the input box in the bottom right corner.</p>
             </div>
 
             <div class="buttons-maze">

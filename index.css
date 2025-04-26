@@ -319,5 +319,17 @@ button:disabled {
     text-overflow: ellipsis;
     overflow: hidden;
     width: 148px;
-    text-wrap: nowrap;
+    white-space: nowrap;
+}
+
+#sel-start:hover, #sel-end:hover {
+    overflow: visible;
+    min-width: 148px;
+    width: fit-content;
+}
+
+#hide-panel {
+    font-size: xx-small;
+    padding-left: 15px; 
+    color: darkgray;
 }

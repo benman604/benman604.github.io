@@ -56,3 +56,14 @@ document.getElementById('toggleTheme').addEventListener('click', () => {
     localStorage.setItem('theme', m_theme);
     onUpdateColorTheme();
 });
+
+document.getElementById('hide-panel').addEventListener('click', () => {
+    let panel = document.getElementById('panel');
+    if (panel.style.display === "none") {
+        panel.style.display = "block";
+        document.getElementById('hide-panel').innerText = "Hide panel";
+    } else {
+        panel.style.display = "none";
+        document.getElementById('hide-panel').innerText = "Show panel";
+    }
+});
