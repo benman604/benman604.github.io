@@ -76,7 +76,7 @@
         margin-bottom: 0px !important;
     }
 
-    .stage-modal {
+    .stage-modal, .stage-modal-wide {
         position: fixed !important;
         height: fit-content !important;
         width: calc(100% - 64px) !important;
@@ -167,6 +167,17 @@ a.activemodal:hover {
     height: fit-content;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.stage-modal-wide {
+    z-index: 100;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 1000px;
+    margin-right: 15px;
+    height: calc(100% - 70px);
+    margin-bottom: 20px;
+    overflow: scroll;
 }
 
 .bottomright {
@@ -332,4 +343,22 @@ button:disabled {
     font-size: xx-small;
     padding-left: 15px; 
     color: darkgray;
+}
+
+.project {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.project img {
+    width: 200px;
+    object-fit: contain;
+}
+
+.project .project-info {
+    margin-left: 20px;
+}
+
+.project h3 {
+    margin-top: 0; margin-bottom: 0;
 }

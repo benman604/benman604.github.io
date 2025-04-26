@@ -46,7 +46,7 @@
             </div>
             <p>
                 Hi, I'm Ben. I'm a student at UCLA, and I'm passionate about creative design and making an impact. I'm always looking for new opportunities to learn and grow.
-                Check our my <a href="#">projects</a> and <a href="#">resume/CV</a>.
+                Check our my <a href="#" id="projects">projects</a>.
             </p>
 
             <div class="btn-group">
@@ -148,6 +148,81 @@
             <br>
             <a href="old">Old version of this site</a>
         </div> <!-- stage-modal (sketches) -->
+
+        <div class="stage stage-modal stage-modal-wide" id="projectsModal" style="display: none;">
+            <a href="#" id="projectsClose">Close</a>
+            <br><br>
+            <h2>Projects</h2>
+
+            <div class="projects-list">
+                <div class="project">
+                    <img src="images/activeread.png" alt="Active Reader screenshot">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">Active Reader</h3>
+                        <i>Best Overall at UCLA Hack on the Hill XII</i>
+                        <p style="margin-top: 5px;">Interactive app enhancing reading comprehension through fill-in-the-blank exercises and AI-graded assignments.</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Next.js, React.js, Typescript, Tailwind, Langchain</p>
+                        <p><a href="https://active-read.vercel.app/">Try it out</a>  |  <a href="https://github.com/RohanAdwankar/active-read">Github</a></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="project">
+                    <img src="images/map.png" alt="Map of New York City">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">Creative Coding Portfolio</h3>
+                        <p style="margin-top: 5px;">You're looking at it right now!</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Javascript, p5.js, Overpass</p>
+                        <p><a href="https://github.com/benman604/benman604.github.io">Github</a></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="project">
+                    <img src="images/reprint.png" alt="The Reprint screenshot">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">The Reprint</h3>
+                        <i>Best Community Vote at UCLA Fiat Ludum game jam</i>
+                        <p style="margin-top: 5px;">A short puzzle game built in 72 hours about escaping a lab. Jam theme: begin anew.</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Unity, C#</p>
+                        <p><a href="https://benjaminman.itch.io/the-reprint">itch.io</a>  |  <a href="https://github.com/zhaotjson/The-Reprint-Fiat-Jam-Game-">Github</a></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="project">
+                    <img src="images/antonio.jpg" alt="Antonio thumbnail">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">Antonio</h3>
+                        <i>Submission for Ludum Dare 56 (Theme: Tiny Creatures)</i>
+                        <p style="margin-top: 5px;">A game built in 72 hours about a small ant in a world full of spiders.</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Unity, C#</p>
+                        <p><a href="https://benjaminman.itch.io/antonio">itch.io</a>  |  <a href="https://github.com/benman604/ldjam56/">Github</a></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="project">
+                    <img src="images/dirdle.png" alt="dirdle -- directional wordle">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">dirdle</h3>
+                        <p style="margin-top: 5px;">Like Wordle, but with arrows and no green tiles.</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Svelte, Javascript</p>
+                        <p><a href="https://dirdle.vercel.app/">Try it out</a>  |  <a href="https://github.com/benman604/dirdle">Github</a></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <p style="width: 100%; text-align: center;"><i>More coming soon!</i></p>
+            </div>
+
+            </div>
+        </div> <!-- stage-modal (projects) -->
 
         <div class="bottomright buttons-map">
             <form class="grid" style="gap: 0px 17px" id="searchform">
