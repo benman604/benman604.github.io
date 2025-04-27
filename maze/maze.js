@@ -155,6 +155,10 @@ function onMazeGenerated() {
 function draw() {
 	background(backgroundColor.r, backgroundColor.g, backgroundColor.b)
 
+	if (windowWidth >= 430) {
+		translate(0, -6)
+	} 
+
 	// rectMode(CENTER)
 	// fill(255, 0, 0)
 	// ellipse(rightx, height / 2 + yfromcenter, 10, 10)
