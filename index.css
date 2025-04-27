@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
     --dark-background: rgb(20, 20, 20);
@@ -131,6 +132,7 @@
 
     #sel-start, #sel-end {
         width: 100% !important;
+        max-width: calc(50vw - 40px) !important;
     }
 }
 
@@ -143,13 +145,14 @@ html {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(20, 20, 20);
+    background-color: var(--background);
 }
 
 body {
     font-weight: 400;
     /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'DM Sans', sans-serif;
     color: var(--text);
     padding: 0;
     margin: 0;
@@ -158,11 +161,11 @@ body {
 
 h1 {
     font-weight: 600;
-    font-family: 'Merriweather', serif;
+    /* font-family: 'Merriweather', serif; */
 }
 
 .ipa {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
     font-size: large;
 }
 
