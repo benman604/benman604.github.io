@@ -37,12 +37,12 @@ let sketches = {
         displayname: "Bouncing Balls",
         source: "https://github.com/benman604/benman604.github.io/tree/v2/polar"
     }, 
-    "test": {
-        scripts: ["test/test.js"],
-        buttons: ".bugus",
-        displayname: "Test Sketch",
-        source: ""
-    }
+    // "test": {
+    //     scripts: ["test/test.js"],
+    //     buttons: ".bugus",
+    //     displayname: "Test Sketch",
+    //     source: ""
+    // }
 }
 
 let scripts = [];

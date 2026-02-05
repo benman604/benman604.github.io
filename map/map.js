@@ -16,7 +16,7 @@ const default_places = [
   {
     coord: '34.070877749999994,-118.44685070595054',
     file: 'map/la_geodata.json'
-  }
+  },
 ]
 
 // state = "Select", "Selecting", "Selected"
