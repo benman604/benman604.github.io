@@ -1,10 +1,10 @@
 var _strokeWeight = 2
-var padding = 20
+var padding = 50
 var boxSize = 27.5
 
-var leftx = 11
+var leftx = 409
 var rightx = 368
-var yfromcenter = (550 / 2) - 1
+var yfromcenter = (380 / 2)
 
 var grid = []
 let current
@@ -17,22 +17,31 @@ var generateMazeInstantly = true
 
 let done = false
 
+let canvasWidth;
+let canvasHeight;
+
 function setup() {
 	// document.querySelectorAll('.buttons-map').forEach(element => {
 	// 	element.style.display = 'none';
 	// });
 	// document.getElementById('buttons-maze').style.display = 'block';
 
-	let canvas = createCanvas(windowWidth, windowHeight);
+	const container = document.getElementById('sketch');
+	canvasWidth = container ? container.offsetWidth : windowWidth;
+	canvasHeight = container ? container.offsetHeight : windowHeight;
+	let canvas = createCanvas(canvasWidth, canvasHeight);
 	canvas.parent('sketch');
 
 	generateMaze()
 }
 
 function generateMaze() {
-	let numCellsAbove = floor((height / 2 - yfromcenter) / boxSize)
-	let startY = (height / 2 - yfromcenter) - numCellsAbove * boxSize
-	let endY = (height / 2 + yfromcenter) + numCellsAbove * boxSize
+	let numCellsAbove = floor((canvasHeight / 2 - yfromcenter) / boxSize)
+	numCellsAbove = 0
+	let startY = (canvasHeight / 2 - yfromcenter) - numCellsAbove * boxSize + 10
+	let endY = (canvasHeight / 2 + yfromcenter) + numCellsAbove * boxSize 
+
+	boxSize = 380 / 15 + 0.1
 
 	let i = 0
 	let j = 0
@@ -46,12 +55,12 @@ function generateMaze() {
 	if (windowWidth < 430) {
 
 		let bottomOfStage = document.getElementById('panel').getBoundingClientRect().bottom 
-		let stageWidth = windowWidth - padding - _strokeWeight
+		let stageWidth = canvasWidth - padding - _strokeWeight
 		boxSize = stageWidth / 15
 
-		for (let x = leftx; x < windowWidth - boxSize; x += boxSize){
+		for (let x = leftx; x < canvasWidth - boxSize; x += boxSize){
 			grid.push([])
-			for(let y = bottomOfStage - _strokeWeight - 1; y < height - boxSize - padding/2; y += boxSize){
+			for(let y = bottomOfStage - _strokeWeight - 1; y < canvasHeight - boxSize - padding/2; y += boxSize){
 				let cell = new Cell(i, j, x, y)
 				cell.enable = true
 				grid[i].push(cell)
@@ -64,7 +73,7 @@ function generateMaze() {
 	} else {
 
 		// boxSize = 27.5
-		for (let x = leftx; x < windowWidth - boxSize - padding / 2; x += boxSize){
+		for (let x = leftx; x < canvasWidth - boxSize - padding / 2; x += boxSize){
 			grid.push([])
 			for(let y = startY; y < endY; y += boxSize){
 				let cell = new Cell(i, j, x, y)
@@ -217,7 +226,10 @@ function setButtonsEnabled(val) {
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight)
+	const container = document.getElementById('sketch');
+	const w = container ? container.offsetWidth : windowWidth;
+	const h = container ? container.offsetHeight : windowHeight;
+	resizeCanvas(w, h)
 }
 
 function onUpdateColorTheme() {}

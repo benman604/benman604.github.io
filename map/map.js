@@ -19,6 +19,7 @@ const default_places = [
   }
 ]
 
+// state = "Select", "Selecting", "Selected"
 let startSelection = {state: "Select", nodeId: null};
 let endSelection = {state: "Select", nodeId: null};
 let path = []; // list of node IDs
@@ -197,17 +198,20 @@ function screenLoadingState(message) {
 }
 
 async function setup() {
-  let canvasHeight = windowHeight;
+  // size canvas to the #sketch container when possible
+  const container = document.getElementById('sketch');
+  let w = container ? container.offsetWidth : windowWidth;
+  let canvasHeight = container ? container.offsetHeight : windowHeight;
 
-  // mobile devices
+  // mobile devices (preserve existing behavior)
   if (windowWidth < 430) {
-    document.getElementById('sketch').style.top = '564px'
+    if (container) container.style.top = '564px';
     canvasHeight = window.innerHeight - 564;
     windowWidthMiles = 10;
   }
 
-  let canvas = createCanvas(windowWidth, canvasHeight);
-	canvas.parent('sketch');
+  let canvas = createCanvas(w, canvasHeight);
+  canvas.parent('sketch');
 
 
   mapGraphics = createGraphics(width, height);
@@ -236,6 +240,9 @@ function draw() {
   if (startSelection.state == "Selected") {
     let node = nodesMap.get(startSelection.nodeId); 
     ellipse(node.x, node.y, 20, 20);
+  } else if (startSelection.state == "Loading") {
+    ellipse(startSelection.clickX, startSelection.clickY, 20, 20);
+    fill(highlightColor.r, highlightColor.g, highlightColor.b);
   } else if (startSelection.state == "Selecting") {
     ellipse(mouseX, mouseY, 20, 20);
   }
@@ -243,6 +250,9 @@ function draw() {
   if (endSelection.state == "Selected") {
     let node = nodesMap.get(endSelection.nodeId);
     triangle(node.x, node.y - 10, node.x - 10, node.y + 10, node.x + 10, node.y + 10);
+  } else if (endSelection.state == "Loading") {
+    triangle(endSelection.clickX, endSelection.clickY - 10, endSelection.clickX - 10, endSelection.clickY + 10, endSelection.clickX + 10, endSelection.clickY + 10);
+    fill(highlightColor.r, highlightColor.g, highlightColor.b);
   } else if (endSelection.state == "Selecting") {
     triangle(mouseX, mouseY - 10, mouseX - 10, mouseY + 10, mouseX + 10, mouseY + 10);
   }
@@ -313,37 +323,49 @@ function getGeodataName(data) {
 
 async function mousePressed() {
   if (!highwaysData) return;
-
   let startloc = nodesMap.get(startSelection.nodeId);
   let endloc = nodesMap.get(endSelection.nodeId);
-  
-  if (dist(mouseX, mouseY, startloc.x, startloc.y) < 20 && startSelection.state === "Selected") {
+
+  if (startloc && dist(mouseX, mouseY, startloc.x, startloc.y) < 20 && startSelection.state === "Selected") {
     beginSelectingStart();
     return;
-  } else if (dist(mouseX, mouseY, endloc.x, endloc.y) < 20 && endSelection.state === "Selected") {
+  } else if (endloc && dist(mouseX, mouseY, endloc.x, endloc.y) < 20 && endSelection.state === "Selected") {
     beginSelectingEnd();
     return;
   }
 
   if (!(startSelection.state === "Selecting" || endSelection.state === "Selecting")) return;
 
+  // Determine which selection is active (start or end)
+  let isStart = startSelection.state === "Selecting";
+  let selection = isStart ? startSelection : endSelection;
+
+  // Move into Loading state and store the clicked position (fixed)
+  selection.state = "Loading";
+  selection.clickX = mouseX;
+  selection.clickY = mouseY;
   let coord = xyToLatLon(mouseX, mouseY);
+  selection.clickLat = coord.lat;
+  selection.clickLon = coord.lon;
+  if (isStart) selStartBtn.innerText = "Loading..."; else selEndBtn.innerText = "Loading...";
+
+  // Perform reverse geocode and finalize selection
   let data = await fetchReverseGeocode(coord.lat, coord.lon);
+  if (!data) {
+    // revert to selecting on failure
+    selection.state = "Selecting";
+    if (isStart) selStartBtn.innerText = "Selecting start"; else selEndBtn.innerText = "Selecting end";
+    return;
+  }
+
   let nearestNode = findNearestNode(coord.lat, coord.lon);
   console.log(coord.lat + "," + coord.lon);
   console.log(nodesMap.get(nearestNode));
 
   let name = getGeodataName(data);
-
-  if (startSelection.state === "Selecting") {
-    startSelection.nodeId = nearestNode;
-    startSelection.state = "Selected";
-    selStartBtn.innerText = name;
-  } else if (endSelection.state === "Selecting") {
-    endSelection.nodeId = nearestNode;
-    endSelection.state = "Selected";
-    selEndBtn.innerText = name;
-  }
+  selection.nodeId = nearestNode;
+  selection.state = "Selected";
+  if (isStart) selStartBtn.innerText = name; else selEndBtn.innerText = name;
 
 }
 
@@ -461,7 +483,13 @@ function setButtonsEnabled(val) {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight)
+  const container = document.getElementById('sketch');
+  const w = container ? container.offsetWidth : windowWidth;
+  const h = container ? container.offsetHeight : windowHeight;
+  resizeCanvas(w, h);
+  if (mapGraphics && mapGraphics.resizeCanvas) mapGraphics.resizeCanvas(width, height);
+  if (mapPathOverlay && mapPathOverlay.resizeCanvas) mapPathOverlay.resizeCanvas(width, height);
+  drawHighways();
 }
 
 function startSearch() {

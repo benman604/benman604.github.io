@@ -30,6 +30,7 @@
     --link-hover: var(--dark-link-hover);
     --text-disabled: var(--dark-text-disabled);
     --outline-disabled: var(--dark-outline-disabled);
+    --stage-height: 380px;
 }
 
 /* for light mode users */
@@ -136,15 +137,41 @@
     }
 }
 
+/* top section wrapper that contains the sketch and floating stage */
+#topSection {
+    position: relative;
+    width: 100%;
+    height: calc(var(--stage-height) + 100px); /* stage height + 50px padding top & bottom */
+    overflow: hidden;
+    border-bottom: 2px solid var(--outline);
+}
+
 #sketch{
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
+}
+
+/* Force any canvas created inside #sketch to fill the container
+   visually. This lets sketches that call createCanvas(windowWidth, windowHeight)
+   render but be scaled to the #sketch box so they no longer overflow. */
+#sketch canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: block !important;
+    object-fit: cover;
 }
 
 html {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: var(--background);
 }
 
@@ -186,22 +213,48 @@ a.activemodal {
     color: var(--highlight);
 }
 
-a.activemodal:hover {
-    text-decoration: none;
-    cursor: default;
-}
+/* a.activemodal:hover { */
+    /* text-decoration: none; */
+    /* cursor: default; */
+/* } */
 
 .container {
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    height: 90vh;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+/* When container is inside the top section, size it to the section
+   so its children (the .stage) center within the top area. */
+#topSection .container {
+    height: 100%;
+    justify-content: flex-start;
+    padding-left: 40px;
+}
+
+/* Allow pointer events to pass through the container to the canvas
+   so the canvas can receive mouse interactions where UI isn't present. */
+#topSection .container {
+    pointer-events: none;
+}
+
+/* Re-enable pointer events for interactive UI elements that sit above the canvas */
+.stage, .panel-extras, .bottomright, .btn-group, .links, .buttons-map, .buttons-maze, .buttons-polar {
+    pointer-events: auto;
+}
+
+.stage {
+    position: relative;
+    z-index: 3;
 }
 
 .stage {
     width: 316px;
-    height: 550px;
+    height: 380px;
     margin: 10px;
     padding-left: 20px;
     padding-right: 20px;
@@ -232,24 +285,27 @@ a.activemodal:hover {
     position: absolute;
     bottom: 0;
     right: 0;
-    margin: 15px;
+    /* margin: 15px; */
+    margin-right: 50px;
+    margin-bottom: 5px;
     width: 200px;
 }
 
 .grid {
     display: grid;
-    gap: 0px 20px;
+    gap: 0px 0px;
     grid-template-columns: auto auto;
 }
 
 button {
-    width: 100%;
-    padding: 5px;
+    /* width: 100%; */
+    width: max-content;
+    /* padding: 5px; */
     background-color: transparent;
     color: var(--text);
     border: 1px solid var(--outline);
-    margin-bottom: 5px;
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    /* margin-bottom: 5px; */
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 input {
@@ -281,7 +337,7 @@ button:hover:not(:disabled):not(#sketchName) {
 }
 
 button:hover:not(:disabled):not(.notransition) {
-    transform: translate(0px, -1px);
+    /* transform: translate(0px, -1px); */
 }
 
 button:disabled {
@@ -299,7 +355,7 @@ button:disabled {
 
 .btn-group {
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     margin: 0;
     padding: 0;
 }
@@ -372,6 +428,13 @@ button:disabled {
     font-size: xx-small;
     margin: 0;
     margin-bottom: 5px;
+}
+
+/* Ensure map control labels have a consistent height so buttons align */
+.btn-group.buttons-map .mini {
+    line-height: 1;
+    height: 14px;
+    margin-bottom: 0px;
 }
 
 #sel-start, #sel-end {

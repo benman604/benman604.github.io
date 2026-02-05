@@ -1,4 +1,5 @@
-let curvesize = 250
+let __curvesize = 180;
+let curvesize = __curvesize;
 let curvesize_multiplier = 1
 const numlines = 100
 const numballs = 3
@@ -45,7 +46,10 @@ function addBall(x, y) {
 }
 
 function setup() {
-    let canvas = createCanvas(windowWidth, windowHeight);
+    const container = document.getElementById('sketch');
+    const w = container ? container.offsetWidth : windowWidth;
+    const h = container ? container.offsetHeight : windowHeight;
+    let canvas = createCanvas(w, h);
     canvas.parent('sketch');
 
     for (let i=0; i<numballs; i++) {
@@ -175,7 +179,10 @@ function mousePressed() {
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight)
+    const container = document.getElementById('sketch');
+    const w = container ? container.offsetWidth : windowWidth;
+    const h = container ? container.offsetHeight : windowHeight;
+    resizeCanvas(w, h)
 }
 
 function onUpdateColorTheme() {}
@@ -188,12 +195,12 @@ function checkMediaQuery() {
     xoff = 0;
     yoff = 564 / 2;
     curvesize_multiplier = 0.5;
-    curvesize = 250 * curvesize_multiplier;
+    curvesize = __curvesize * curvesize_multiplier;
   } else {
     xoff = 368 / 2;
     yoff = 0;
     curvesize_multiplier = 1;
-    curvesize = 250 * curvesize_multiplier;
+    curvesize = __curvesize * curvesize_multiplier;
   }
 }
 

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Man</title>
+
+    <script src="https://kit.fontawesome.com/43dc370da9.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js" id="p5"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script src="script_manager.js" defer></script>
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VSSTZYDR2Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VSSTZYDR2Y');
+</script>
+
+<body>
+
+    <div id="sketch"></div>
+
+    <div class="container">
+        <div class="stage-container">
+        <div class="stage" style="margin-bottom: 0;" id="panel">
+            <h1>Benjamin Man</h1>
+            <div class="sidebyside">
+                <div>
+                    <img src="../pfp.jpg" alt="my pfp" class="pfp">
+                </div>
+                <div>
+                    <p class="ipa">/bɛnd͡ʒəmɪn mæn/</p> <br>
+                    <p>Computer Science and Linguistics @ UCLA '27</p>
+                </div>
+            </div>
+            <p>
+                Hi, I'm Ben. I'm a student at UCLA, and I'm passionate about creative design and making an impact. I'm always looking for new opportunities to learn and grow.
+                Check out some <a href="#" id="projects">things I've worked on</a>.
+            </p>
+
+            <div class="btn-group">
+                <button id="prev" class="notransition">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="sketchName" class="notransition" style="width: 100%;">
+                    Map
+                </button>
+                <button id="next" class="notransition">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div> <!-- sketch selector -->
+
+            <div class="links">
+                <a id="allSketches" href="#">All Sketches</a>
+                <a id="whatsThis" href="#" style="margin-left: 10px; margin-right: 10px;">Whats This?</a>
+                <a id="toggleTheme" href="#">Light Mode</a>
+            </div>
+
+            <div class="buttons-map">
+                <div class="grid" style="margin-bottom: 10px;">
+                    <div class="half">
+                        <p class="mini">Origin ●</p>
+                        <button id="sel-start">Select Start</button>
+                    </div>
+                    <div class="half" style="align-items: right; text-align: right; justify-content: right;">
+                        <p class="mini">▲ Destination</p>
+                        <button id="sel-end">Select End</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="half socials">
+                    <a href="https://github.com/benman604" class="fa-brands fa-github"></a>
+                    <!-- <a href="https://benjamin-man.itch.io/" class="fa-brands fa-itch-io"></a> -->
+                    <!-- <a href="https://www.youtube.com/channel/UCttQGQE5lg9vOBdDMSe2rLA" class="fa-brands fa-youtube"></a> -->
+                    <a href="https://www.linkedin.com/in/benjamin-man-839b69196/" class="fa-brands fa-linkedin"></a>
+                    <a class="fa-solid fa-envelope" id="clickmail" href="mailto:8k1x54yhv@relay.firefox.com"></a>
+                </div>
+
+                <div class="half" style="max-width: 141px;">
+                    <div class="buttons-maze" style="display: none;">
+                        <button id="regen">Randomize Maze</button>
+                        <button id="astar" disabled>Solve A*</button>
+                        <button id="bfs" disabled>Solve BFS</button>
+                        <button id="dfs" disabled>Solve DFS</button>
+                    </div>
+                    <div class="buttons-map">
+                        <button id="mastar" disabled>Solve A*</button>
+                        <button id="mbfs" disabled>Solve BFS</button>
+                    </div>
+                    <div class="buttons-polar" style="display: none;">
+                        <button id="newshape">New Shape</button>
+                        <button id="addball">Add Ball</button>
+                        <button id="remball">Remove Ball</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div> <!-- stage -->
+        <a href="#" id="hide-panel">Hide panel</a>
+        </div> <!-- stage-container -->
+
+        <div class="stage stage-modal" id="whatsThisModal" style="display: none;">
+            <a href="#" id="whatsThisClose">Close</a>
+            <br>
+
+            <div class="buttons-map">
+                <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> visualization of map pathfinding algorithms. You're probably looking at San Francisco, Los Angeles, or New York City.</p>
+                <p>The map data is from <a target="_blank" href="https://www.openstreetmap.org/">OpenStreetMap</a>'s <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Overpass_API">Overpass API</a>, with reverse geocoding also from OSM.</p>
+                <p>Click the circle or triangle to change the origin or destination. You can also set the map to wherever you like with the input box in the bottom right corner.</p>
+            </div>
+
+            <div class="buttons-maze">
+                <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> visualization of maze generation and solver algorithms. The maze is generated using <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Randomized_depth-first_search">depth-first search</a>.</p>
+                <p>The <a target="_blank" href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* algorithm</a> uses a heuristic function of <a target="_blank" href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance</a>, which is displayed in each visited cell of the maze.</p>
+            </div>
+
+            <div class="buttons-polar">
+                <p>This is a <a target="_blank" href="https://p5js.org">p5.js</a> simulation of some balls bouncing around a polar curve, particularly a <a target="_blank" href="https://en.wikipedia.org/wiki/Rose_(mathematics)">Rose curve</a> of the form</p>
+                <p>\( r(\theta) = 1 + \frac{\sin(a \theta)}{a} \)</p>
+                <p>where \( a \) is the number of petals.</p>
+                <!-- <p>Some simple custom physics logic controls the movement of the balls, where edge collisions use</p>
+                <p>\( \frac{dr}{d\theta} = a \cos(a \theta) \)</p>
+                <p>\( \frac{dx}{d\theta} = \frac{dr}{d\theta} \cos(\theta) - \sin(\theta) r(\theta) \)</p>
+                <p>\( \frac{dy}{d\theta} = \frac{dr}{d\theta} \sin(\theta) + \cos(\theta) r(\theta) \)</p>
+                <p>to get the orthogonal angle to the curve.</p> -->
+            </div>
+        
+            <a id="sourceLink" href="#" target="_blank">View source</a>
+        </div> <!-- stage-modal (what's this?) -->
+
+        <div class="stage stage-modal" id="allSketchesModal" style="display: none;">
+            <a href="#" id="allSketchesClose">Close</a>
+            <br><br>
+            <div id="sketchesList"></div>
+            <br>
+            <a href="old">Old version of this site</a>
+        </div> <!-- stage-modal (sketches) -->
+
+        <div class="stage stage-modal stage-modal-wide" id="projectsModal" style="display: none;">
+            <a href="#" id="projectsClose">Close</a>
+            <br><br>
+
+            <h1>Work</h1>
+
+            <div class="work-list">
+                    <div class="half">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">Esri</h3>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Software Engineer Intern</p>
+                        <p style="margin-top: 5px;">Summer 2025</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Incoming intern on the ArcGIS for Adobe Creative Cloud team.</p>
+                    </div>
+                    <br><br>
+                    <div class="half">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">California Geological Survey</h3>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Software Engineer Student Assistant</p>
+                        <p style="margin-top: 5px;">January 2025 - present</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Building and maintaining earthquake data tools for the Center for Engineering Strong Motion Data (CESMD). I work with PHP, Perl, MySQL, and Javascript to create intuitive web services retrieving data from California's 1,400 strong motion stations for over 20,000 engineers, geologists, and other members of the seismology community.</p>
+                    </div>
+            </div>
+
+            <br>
+            <hr>
+
+            <h1>Projects</h1>
+
+            <div class="projects-list">
+                <div class="project">
+                    <img src="images/activeread.png" alt="Active Reader screenshot">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">Active Reader</h3>
+                        <i>Best Overall at UCLA Hack on the Hill XII</i>
+                        <p style="margin-top: 5px;">Interactive app enhancing reading comprehension through fill-in-the-blank exercises and AI-graded assignments.</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Next.js, React.js, Typescript, Tailwind, Langchain</p>
+                        <p><a href="https://active-read.vercel.app/">Try it out</a>  |  <a href="https://github.com/RohanAdwankar/active-read">Github</a></p>
+                    </div>
+                </div>
+
+                <!-- <hr> -->
+
+                <div class="project">
+                    <img src="images/map.png" alt="Map of New York City">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">Creative Coding Portfolio</h3>
+                        <p style="margin-top: 5px;">You're looking at it right now!</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Javascript, p5.js, Overpass</p>
+                        <p><a href="https://github.com/benman604/benman604.github.io">Github</a></p>
+                    </div>
+                </div>
+
+                <!-- <hr> -->
+
+                <div class="project">
+                    <img src="images/reprint.png" alt="The Reprint screenshot">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">The Reprint</h3>
+                        <i>Best Community Vote at UCLA Fiat Ludum game jam</i>
+                        <p style="margin-top: 5px;">A short puzzle game built in 72 hours about escaping a lab. Jam theme: begin anew.</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Unity, C#</p>
+                        <p><a href="https://benjaminman.itch.io/the-reprint">itch.io</a>  |  <a href="https://github.com/zhaotjson/The-Reprint-Fiat-Jam-Game-">Github</a></p>
+                    </div>
+                </div>
+
+                <!-- <hr> -->
+
+                <div class="project">
+                    <img src="images/antonio.jpg" alt="Antonio thumbnail">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">Antonio</h3>
+                        <i>Submission for Ludum Dare 56 (Theme: Tiny Creatures)</i>
+                        <p style="margin-top: 5px;">A game built in 72 hours about a small ant in a world full of spiders.</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Unity, C#</p>
+                        <p><a href="https://benjaminman.itch.io/antonio">itch.io</a>  |  <a href="https://github.com/benman604/ldjam56/">Github</a></p>
+                    </div>
+                </div>
+
+                <!-- <hr> -->
+
+                <div class="project">
+                    <img src="images/dirdle.png" alt="dirdle -- directional wordle">
+                    <div class="project-info">
+                        <h3 style="margin-top: 0; margin-bottom: 0;">dirdle</h3>
+                        <p style="margin-top: 5px;">Like Wordle, but with arrows and uncertain green tiles.</p>
+                        <p style="margin-top: 5px; margin-bottom: 0;">Built with: Svelte, Javascript</p>
+                        <p><a href="https://dirdle.vercel.app/">Try it out</a>  |  <a href="https://github.com/benman604/dirdle">Github</a></p>
+                    </div>
+                </div>
+
+                <br>
+                <hr>
+
+                <p style="width: 100%; text-align: center;">More coming soon!</p>
+            </div>
+
+            </div>
+        </div> <!-- stage-modal (projects) -->
+
+        <div class="bottomright buttons-map">
+            <form class="grid" style="gap: 0px 17px" id="searchform">
+                <input type="text" name="query" placeholder="Search for a place...">
+                <button type="submit" style="margin-top:5px; margin-bottom: 5px;">Go</button>
+            </form>
+        </div>
+    </div> <!-- container -->
+</body>
+</html>

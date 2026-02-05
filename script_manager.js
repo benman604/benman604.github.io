@@ -36,6 +36,12 @@ let sketches = {
         buttons: ".buttons-polar",
         displayname: "Bouncing Balls",
         source: "https://github.com/benman604/benman604.github.io/tree/v2/polar"
+    }, 
+    "test": {
+        scripts: ["test/test.js"],
+        buttons: ".bugus",
+        displayname: "Test Sketch",
+        source: ""
     }
 }
 
@@ -54,7 +60,7 @@ if(params.has("sketch") && sketches[currSketch] !== undefined) {
 }
 
 document.querySelectorAll(sketches[currSketch].buttons).forEach(element => {
-  element.style.display = 'block';
+    element.style.display = 'block';
 });
 
 const sketchesList = document.getElementById("sketchesList");
@@ -112,11 +118,11 @@ const allModals = [
         modalId: "allSketchesModal",
         closeId: "allSketchesClose"
     },
-    {
-        buttonId: "projects",
-        modalId: "projectsModal",
-        closeId: "projectsClose"
-    }
+    // {
+    //     buttonId: "projects",
+    //     modalId: "projectsModal",
+    //     closeId: "projectsClose"
+    // }
 ];
 
 // Function to initialize modals
@@ -153,21 +159,21 @@ function initializeModals(modals) {
 }
 
 // Close all modals and hide main panel
-document.getElementById('hide-panel').addEventListener('click', () => {
-    let panel = document.getElementById('panel');
-    if (panel.style.display === "none") {
-        panel.style.display = "block";
-        document.getElementById('hide-panel').innerText = "Hide panel";
-    } else {
-        panel.style.display = "none";
-        document.getElementById('hide-panel').innerText = "Show panel";
-    }
+// document.getElementById('hide-panel').addEventListener('click', () => {
+//     let panel = document.getElementById('panel');
+//     if (panel.style.display === "none") {
+//         panel.style.display = "block";
+//         document.getElementById('hide-panel').innerText = "Hide panel";
+//     } else {
+//         panel.style.display = "none";
+//         document.getElementById('hide-panel').innerText = "Show panel";
+//     }
 
-    // Close all modals when the panel is hidden
-    allModals.forEach(({ closeId }) => {
-        document.getElementById(closeId).click();
-    });
-});
+//     // Close all modals when the panel is hidden
+//     allModals.forEach(({ closeId }) => {
+//         document.getElementById(closeId).click();
+//     });
+// });
 
 // Initialize all modals
 initializeModals(allModals);

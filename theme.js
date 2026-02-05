@@ -1,5 +1,5 @@
 var m_theme = "dark"
-var backgroundColor = {r:20, g:20, b:20}
+var backgroundColor = {r:0, g:40, b:0}
 var outlineColor = 180
 var highlightColor = {r:200, g:255, b:40}
 var lighterColor = 100
@@ -15,7 +15,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', eve
 function theme(newColorScheme) {
     document.documentElement.setAttribute("data-theme", newColorScheme);
     if(newColorScheme == "dark") {
-        backgroundColor = {r:20, g:20, b:20}
+        backgroundColor = {r:0, g:40, b:0}
         outlineColor = 180
         highlightColor = {r:200, g:255, b:40}
         lighterColor = 100
