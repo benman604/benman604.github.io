@@ -31,8 +31,6 @@
 
 
     <div id="topSection" class="top-section">
-        <div id="sketch"></div>
-
         <div class="container">
             <div class="stage-container">
                 <div class="stage" style="margin-bottom: 0;" id="panel">
@@ -97,9 +95,11 @@
                 <a href="old">Old version of this site</a>
             </div> <!-- stage-modal (sketches) -->
 
+            <div id="sketch"></div>
+            
         </div> <!-- container -->
 
-        <div class="bottomright buttons-map">
+        <div class="bottomright buttons-map" style="z-index: 100000;">
             <form class="grid" style="gap: 0px 17px" id="searchform">
                 <input type="text" name="query" placeholder="Search for a place...">
                 <button type="submit" style="margin-top:5px; margin-bottom: 5px;">Go</button>
@@ -109,24 +109,26 @@
     </div> <!-- topSection -->
     
     <div id="projectsSection" class="page-section" style="padding: 20px 0px; background: transparent;">
-        <div style="margin-left: 50px; margin-right: 50px;">
+        <div style="margin-left: 50px; margin-right: 50px;" class="less-margins-please">
             <div style="
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 position: relative;
-            ">
+            " class="antiflex-sm">
                 <!-- Left -->
                 <div class="btn-group buttons-maze">
-                    <button id="regen">Randomize Maze</button>
-                    <button id="astar" disabled>Solve A*</button>
-                    <button id="bfs" disabled>Solve BFS</button>
-                    <button id="dfs" disabled>Solve DFS</button>
+                    <div class="antiantiflex">
+                        <button id="regen">Randomize Maze</button>
+                        <button id="astar" disabled>Solve A*</button>
+                        <button id="bfs" disabled>Solve BFS</button>
+                        <button id="dfs" disabled>Solve DFS</button>
+                    </div>
                 </div>
                 
                 
                 <div class="btn-group buttons-map">
-                    <div style="display: flex;">
+                    <div style="display: flex;" class="antiflex">
                         <div class="grid">
                             <div class="half">
                                 <p class="mini">Origin ●</p>
@@ -137,40 +139,29 @@
                                 <button id="sel-end" style="border-left: 0">Loading...</button>
                             </div>
                         </div>
-                        <div style="margin-left: 15px; margin-top: 14px;">
-                            <button id="mastar" disabled>Navigate A*</button>
-                            <button id="mbfs" disabled>Navigate BFS</button>
+                        <div style="margin-left: 15px; margin-top: 14px;" class="antimargin antismall antiantiflex">
+                            <button id="mastar" class="antismall">Navigate A*</button>
+                            <button id="mbfs" class="antismall">Navigate BFS</button>
                         </div>
                     </div>
                 </div>
                 
                 <div class="btn-group buttons-polar">
-                    <button id="newshape">New Shape</button>
-                    <button id="addball">Add Ball</button>
-                    <button id="remball">Remove Ball</button>
+                    <div class="antiantiflex">
+                        <button id="newshape">New Shape</button>
+                        <button id="addball">Add Ball</button>
+                        <button id="remball">Remove Ball</button>
+                    </div>
                 </div>
 
                 <div class="bogus"></div>
-
-                <!-- Middle (true center) -->
-                <!-- <div style="
-                    position: absolute;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    text-align: center;
-                    white-space: nowrap;
-                ">
-                    <a id="allSketches" href="#">All Sketches</a>
-                    <a id="whatsThis" href="#" style="margin-left: 10px; margin-right: 10px;">Whats This?</a>
-                    <a id="toggleTheme" href="#">Light Mode</a>
-                </div> -->
                 
                 <!-- Right -->
-                <div class="btn-group">
+                <div class="btn-group sketch-selector">
                     <button id="prev" class="notransition">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <button id="sketchName" class="notransition">
+                    <button id="sketchName" class="notransition cw100">
                         Map
                     </button>
                     <button id="next" class="notransition">
@@ -191,7 +182,7 @@
 
         </div>
 
-        <div style="margin: 50px; display: flex; gap: 50px;">
+        <div style="margin: 50px; display: flex; gap: 50px;" class="antiflex less-margins-please">
             <div style="flex: 1; max-width: 500px;">
                 <h1>Work</h1>
                 <div class="work-list">

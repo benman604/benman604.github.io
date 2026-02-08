@@ -1,5 +1,6 @@
 var m_theme = "dark"
 var backgroundColor = {r:0, g:40, b:0}
+var pageBackgroundColor = {r:20, g:20, b:20}
 var outlineColor = 180
 var highlightColor = {r:200, g:255, b:40}
 var lighterColor = 100
@@ -16,6 +17,7 @@ function theme(newColorScheme) {
     document.documentElement.setAttribute("data-theme", newColorScheme);
     if(newColorScheme == "dark") {
         backgroundColor = {r:0, g:40, b:0}
+        pageBackgroundColor = {r:20, g:20, b:20}
         outlineColor = 180
         highlightColor = {r:200, g:255, b:40}
         lighterColor = 100
@@ -23,6 +25,7 @@ function theme(newColorScheme) {
         m_theme = "dark"
     } else {
         backgroundColor = {r:255, g:255, b:255}
+        pageBackgroundColor = {r:255, g:255, b:255}
         outlineColor = 120
         lighterColor = 200
         darkerColor = 240

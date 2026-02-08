@@ -20,6 +20,8 @@ let done = false
 let canvasWidth;
 let canvasHeight;
 
+var _end_y = 255;
+
 function setup() {
 	// document.querySelectorAll('.buttons-map').forEach(element => {
 	// 	element.style.display = 'none';
@@ -52,15 +54,19 @@ function generateMaze() {
 	bfsqueue = []
 	distTo = new Map()
 
-	if (windowWidth < 430) {
+	if (windowWidth < 850) {
+		document.getElementById('topSection').style.borderBottom = 'none'
 
-		let bottomOfStage = document.getElementById('panel').getBoundingClientRect().bottom 
-		let stageWidth = canvasWidth - padding - _strokeWeight
-		boxSize = stageWidth / 15
+		// let bottomOfStage = document.getElementById('panel').getBoundingClientRect().bottom 
+		// let stageWidth = canvasWidth - padding - _strokeWeight
+		// boxSize = canvasWidth / 25
+		boxSize = canvasWidth / Math.round(canvasWidth / 25)
 
-		for (let x = leftx; x < canvasWidth - boxSize; x += boxSize){
+		let y = 0;
+
+		for (let x = 0; x < canvasWidth - boxSize + 1; x += boxSize){
 			grid.push([])
-			for(let y = bottomOfStage - _strokeWeight - 1; y < canvasHeight - boxSize - padding/2; y += boxSize){
+			for(y = 0; y < canvasHeight - boxSize - 1; y += boxSize){
 				let cell = new Cell(i, j, x, y)
 				cell.enable = true
 				grid[i].push(cell)
@@ -69,11 +75,12 @@ function generateMaze() {
 			i++
 			j=0
 		}
+		_end_y = y;
 
 	} else {
 
 		// boxSize = 27.5
-		for (let x = leftx; x < canvasWidth - boxSize - padding / 2; x += boxSize){
+		for (let x = leftx; x < canvasWidth - boxSize - padding / 2 - 50; x += boxSize){
 			grid.push([])
 			for(let y = startY; y < endY; y += boxSize){
 				let cell = new Cell(i, j, x, y)
@@ -213,6 +220,18 @@ function draw() {
 		ellipse(first.x + boxSize / 2, first.y + boxSize / 2, boxSize / 2)
 		triangle(last.x + boxSize / 2, last.y + boxSize / 2 - boxSize / 3, last.x + boxSize / 2 - Math.sqrt(3) * boxSize / 6, last.y + boxSize / 2 + boxSize / 6, last.x + boxSize / 2 + Math.sqrt(3) * boxSize / 6, last.y + boxSize / 2 + boxSize / 6);
 	}
+
+	if (windowWidth < 850) {
+		// Since we got rid of the bottom border
+		// and are now relying on the bottom of the maze be be a border
+		// draw a rect of page background color to make it
+		// look like its part of the page (and not the sketch)
+		fill(pageBackgroundColor.r, pageBackgroundColor.g, pageBackgroundColor.b)
+		rectMode(CORNER);
+		noStroke();
+		rect(0, _end_y + _strokeWeight, canvasWidth, canvasHeight);
+	}
+	// rect(0, 0, leftx + boxSize / 2, canvasHeight)
 }
 
 document.getElementById('regen').addEventListener('click', generateMaze)

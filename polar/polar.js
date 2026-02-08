@@ -188,13 +188,13 @@ function windowResized() {
 function onUpdateColorTheme() {}
 
 // for mobile devices
-const mediaQuery = window.matchMedia('(max-width: 430px)');
+const mediaQuery = window.matchMedia('(max-width: 850px)');
 
 function checkMediaQuery() {
   if (mediaQuery.matches) {
     xoff = 0;
-    yoff = 564 / 2;
-    curvesize_multiplier = 0.5;
+    yoff = 0;
+    curvesize_multiplier = 0.7;
     curvesize = __curvesize * curvesize_multiplier;
   } else {
     xoff = 368 / 2;

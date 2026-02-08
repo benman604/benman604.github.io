@@ -23,7 +23,7 @@ async function bfs(start, end) {
 			return;
 		}
         let current = bfsqueue.shift();
-		console.log(searchID, currentSearchID)
+		// console.log(searchID, currentSearchID)
 
         if (tick % waitOneMsEvery === 0) {
             await new Promise(resolve => setTimeout(resolve, 1));
@@ -43,7 +43,7 @@ async function bfs(start, end) {
             }
             path.reverse();
             path.push(end);
-            console.log("Path found: ", path);
+            // console.log("Path found: ", path);
             endSearch();
             return;
         }
