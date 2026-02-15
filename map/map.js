@@ -19,9 +19,10 @@ const default_places = [
   },
 ]
 
-// state = "Select", "Selecting", "Selected"
+// state = "Select", "Selecting", "Selected", "Dragging"
 let startSelection = {state: "Select", nodeId: null};
 let endSelection = {state: "Select", nodeId: null};
+let draggingMarker = null; // 'start' or 'end' when dragging
 let path = []; // list of node IDs
 let roadMap = new Map(); // adjacency list of node IDs
 
@@ -237,9 +238,17 @@ function draw() {
   noStroke();
   fill(highlightColor.r, highlightColor.g, highlightColor.b);
 
-  if (startSelection.state == "Selected") {
-    let node = nodesMap.get(startSelection.nodeId); 
-    ellipse(node.x, node.y, 20, 20);
+  if (startSelection.state == "Selected" || startSelection.state == "Dragging") {
+    let x, y;
+    if (startSelection.state == "Dragging") {
+      x = mouseX;
+      y = mouseY;
+    } else {
+      let node = nodesMap.get(startSelection.nodeId);
+      x = node.x;
+      y = node.y;
+    }
+    ellipse(x, y, 20, 20);
   } else if (startSelection.state == "Loading") {
     ellipse(startSelection.clickX, startSelection.clickY, 20, 20);
     fill(highlightColor.r, highlightColor.g, highlightColor.b);
@@ -247,9 +256,17 @@ function draw() {
     ellipse(mouseX, mouseY, 20, 20);
   }
 
-  if (endSelection.state == "Selected") {
-    let node = nodesMap.get(endSelection.nodeId);
-    triangle(node.x, node.y - 10, node.x - 10, node.y + 10, node.x + 10, node.y + 10);
+  if (endSelection.state == "Selected" || endSelection.state == "Dragging") {
+    let x, y;
+    if (endSelection.state == "Dragging") {
+      x = mouseX;
+      y = mouseY;
+    } else {
+      let node = nodesMap.get(endSelection.nodeId);
+      x = node.x;
+      y = node.y;
+    }
+    triangle(x, y - 10, x - 10, y + 10, x + 10, y + 10);
   } else if (endSelection.state == "Loading") {
     triangle(endSelection.clickX, endSelection.clickY - 10, endSelection.clickX - 10, endSelection.clickY + 10, endSelection.clickX + 10, endSelection.clickY + 10);
     fill(highlightColor.r, highlightColor.g, highlightColor.b);
@@ -323,9 +340,14 @@ function getGeodataName(data) {
 
 async function mousePressed() {
   if (!highwaysData) return;
+  
+  // Don't handle mouse events if this is a touch event
+  if (touches.length > 0) return;
+  
   let startloc = nodesMap.get(startSelection.nodeId);
   let endloc = nodesMap.get(endSelection.nodeId);
 
+  // Desktop: click marker to enter selecting mode
   if (startloc && dist(mouseX, mouseY, startloc.x, startloc.y) < 20 && startSelection.state === "Selected") {
     beginSelectingStart();
     return;
@@ -367,6 +389,70 @@ async function mousePressed() {
   selection.state = "Selected";
   if (isStart) selStartBtn.innerText = name; else selEndBtn.innerText = name;
 
+}
+
+function touchStarted() {
+  if (!highwaysData) return;
+  
+  let startloc = nodesMap.get(startSelection.nodeId);
+  let endloc = nodesMap.get(endSelection.nodeId);
+
+  if (startloc && dist(mouseX, mouseY, startloc.x, startloc.y) < 20 && startSelection.state === "Selected") {
+    startSelection.state = "Dragging";
+    draggingMarker = 'start';
+    prepareForSearch();
+    return false;
+  } else if (endloc && dist(mouseX, mouseY, endloc.x, endloc.y) < 20 && endSelection.state === "Selected") {
+    endSelection.state = "Dragging";
+    draggingMarker = 'end';
+    prepareForSearch();
+    return false;
+  }
+  
+  // If in selecting mode (button was clicked), handle touch as selection
+  if (startSelection.state === "Selecting" || endSelection.state === "Selecting") {
+    // Let mousePressed handle it
+    return;
+  }
+}
+
+async function touchEnded() {
+  if (!highwaysData) return;
+  if (draggingMarker === null) return;
+
+  let isStart = draggingMarker === 'start';
+  let selection = isStart ? startSelection : endSelection;
+
+  selection.state = "Loading";
+  selection.clickX = mouseX;
+  selection.clickY = mouseY;
+  let coord = xyToLatLon(mouseX, mouseY);
+  selection.clickLat = coord.lat;
+  selection.clickLon = coord.lon;
+  if (isStart) selStartBtn.innerText = "Loading..."; else selEndBtn.innerText = "Loading...";
+
+  let data = await fetchReverseGeocode(coord.lat, coord.lon);
+  if (!data) {
+    selection.state = "Selected";
+    draggingMarker = null;
+    let node = nodesMap.get(selection.nodeId);
+    let originalData = await fetchReverseGeocode(node.lat, node.lon);
+    if (isStart) selStartBtn.innerText = getGeodataName(originalData); 
+    else selEndBtn.innerText = getGeodataName(originalData);
+    return false;
+  }
+
+  let nearestNode = findNearestNode(coord.lat, coord.lon);
+  console.log(coord.lat + "," + coord.lon);
+  console.log(nodesMap.get(nearestNode));
+
+  let name = getGeodataName(data);
+  selection.nodeId = nearestNode;
+  selection.state = "Selected";
+  if (isStart) selStartBtn.innerText = name; else selEndBtn.innerText = name;
+  
+  draggingMarker = null;
+  return false;
 }
 
 document.getElementById('searchform').addEventListener('submit', async (e) => {
