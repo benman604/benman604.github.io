@@ -2,7 +2,7 @@ let __curvesize = 180;
 let curvesize = __curvesize;
 let curvesize_multiplier = 1
 const numlines = 100
-const numballs = 3
+const numballs = 2
 const ballsize = 30
 let xoff = 368 / 2
 let yoff = 0
@@ -69,10 +69,11 @@ function draw() {
     let prevy = -1 * (r(0) * sin(0))
     let increment = 2 * PI / numlines
         
+    // Draw the vector field
     stroke(lighterColor)
     strokeWeight(1)
     for (let i=-(width/2)-xoff; i<-(width/2)-xoff+width; i+=30) {
-        for (let j=-(height/2)-yoff; j<-(height/2)-yoff+height; j+=30) {
+        for (let j=-(height/2)-yoff; j<-(height/2)-yoff+height+1; j+=30) {
             let ballr = atan2(j, i);
             let mtan = dy(ballr) / dx(ballr);
             if (dx(ballr) == 0) mtan = 0;

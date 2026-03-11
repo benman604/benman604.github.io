@@ -14,7 +14,7 @@
     <script src="script_manager.js" defer></script>
 
     <link rel="stylesheet" href="index.css">
-    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -37,7 +37,7 @@
                     <h1>Benjamin Man</h1>
                     <div class="sidebyside">
                         <div>
-                            <img src="../pfp.jpg" alt="my pfp" class="pfp">
+                            <img src="pfp.jpg" alt="my pfp" class="pfp">
                         </div>
                         <div>
                             <p class="ipa">/bɛnd͡ʒəmɪn mæn/</p> <br>
@@ -190,6 +190,12 @@
                             <h3 style="margin-top: 0; margin-bottom: 0;">Esri</h3>
                             <p style="margin-top: 5px; margin-bottom: 0;">Software Engineer Intern</p>
                             <p style="margin-top: 5px;">Summer 2025</p>
+                            <div class="tech-chips" style="margin-bottom: 10px;">
+                                <span class="tech-chip">Typescript</span>
+                                <span class="tech-chip">React</span>
+                                <span class="tech-chip">ArcGIS</span>
+                                <span class="tech-chip">OAuth</span>
+                            </div>
                             <p style="margin-top: 5px; margin-bottom: 0;">Building cartography design tools within ArcGIS Maps for Adobe Creative Cloud.</p>
                         </div>
                         <br><br>
@@ -197,12 +203,19 @@
                             <h3 style="margin-top: 0; margin-bottom: 0;">California Geological Survey</h3>
                             <p style="margin-top: 5px; margin-bottom: 0;">Software Engineer Intern</p>
                             <p style="margin-top: 5px;">January 2025 - present</p>
+                            <div class="tech-chips" style="margin-bottom: 10px;">
+                                <span class="tech-chip">PHP</span>
+                                <span class="tech-chip">Perl</span>
+                                <span class="tech-chip">Javascript</span>
+                                <span class="tech-chip">MySQL</span>
+                                <span class="tech-chip">Leaflet.js</span>
+                            </div>
                             <p style="margin-top: 5px; margin-bottom: 0;">Building the Center for Engineering Strong Motion Data (CESMD)'s earthquake data tools.</p>
                         </div>
                 </div>
             </div>
 
-            <div style="flex: 2;">
+            <div style="flex: 2; max-width: 850px;">
                 <h1>Projects</h1>
                 <div class="projects-list">
                     <div class="project">
@@ -210,8 +223,17 @@
                         <div class="project-info">
                             <h3 style="margin-top: 0; margin-bottom: 0;">ViberVST</h3>
                             <p style="margin-top: 5px;">A VST plugin for fun audio visualizations in your DAW.</p>
-                            <p style="margin-top: 5px; margin-bottom: 0;">Built with: JUCE, C++</p>
-                            <p><a href="https://github.com/benman604/ViberVST">Github</a></p>
+                            <div class="tech-chips" aria-label="Built with JUCE and C++">
+                                <span class="tech-chip">JUCE</span>
+                                <span class="tech-chip">C++</span>
+                                <span class="tech-chip">p5.js</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/benman604/ViberVST" class="project-action">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    <span>Github</span>
+                                </a>
+                            </div>
                         </div>
                     </div>                    
                     <div class="project">
@@ -219,8 +241,21 @@
                         <div class="project-info">
                             <h3 style="margin-top: 0; margin-bottom: 0;">Strong Motion Data Viewer</h3>
                             <p style="margin-top: 5px;">An alternative map interface to view and download earthquake records from CESMD.</p>
-                            <p style="margin-top: 5px; margin-bottom: 0;">Built with: Next.js, Typescript, Tailwind, Leaflet.js</p>
-                            <p><a href="https://strongmotion.vercel.app/">Try it out</a>  |  <a href="https://github.com/benman604/smc-dataviewer">Github</a></p>
+                            <div class="tech-chips" aria-label="Built with Next.js, Typescript, Tailwind, and Leaflet.js">
+                                <span class="tech-chip">Next.js</span>
+                                <span class="tech-chip">Typescript</span>
+                                <span class="tech-chip">Tailwind</span>
+                                <span class="tech-chip">Leaflet.js</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://strongmotion.vercel.app/" class="project-action">
+                                    <span>Try it out</span>
+                                </a>
+                                <a href="https://github.com/benman604/smc-dataviewer" class="project-action">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    <span>Github</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="project">
@@ -229,8 +264,21 @@
                             <h3 style="margin-top: 0; margin-bottom: 0;">Active Reader</h3>
                             <i>Best Overall at UCLA Hack on the Hill XII</i>
                             <p style="margin-top: 5px;">Interactive app enhancing reading comprehension through fill-in-the-blank exercises and AI-graded assignments.</p>
-                            <p style="margin-top: 5px; margin-bottom: 0;">Built with: Next.js, Typescript, Tailwind, Langchain</p>
-                            <p><a href="https://active-read.vercel.app/">Try it out</a>  |  <a href="https://github.com/RohanAdwankar/active-read">Github</a></p>
+                            <div class="tech-chips" aria-label="Built with Next.js, Typescript, Tailwind, and Langchain">
+                                <span class="tech-chip">Next.js</span>
+                                <span class="tech-chip">Typescript</span>
+                                <span class="tech-chip">Tailwind</span>
+                                <span class="tech-chip">Langchain</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://active-read.vercel.app/" class="project-action">
+                                    <span>Try it out</span>
+                                </a>
+                                <a href="https://github.com/RohanAdwankar/active-read" class="project-action">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    <span>Github</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <!-- <div class="project">
@@ -248,8 +296,20 @@
                             <h3 style="margin-top: 0; margin-bottom: 0;">The Reprint</h3>
                             <i>Best Community Vote at UCLA Fiat Ludum game jam (Theme: Begin Anew)</i>
                             <p style="margin-top: 5px;">A short puzzle game built in 72 hours about escaping a lab.</p>
-                            <p style="margin-top: 5px; margin-bottom: 0;">Built with: Unity, C#</p>
-                            <p><a href="https://benjaminman.itch.io/the-reprint">itch.io</a>  |  <a href="https://github.com/zhaotjson/The-Reprint-Fiat-Jam-Game-">Github</a></p>
+                            <div class="tech-chips" aria-label="Built with Unity and C#">
+                                <span class="tech-chip">Unity</span>
+                                <span class="tech-chip">C#</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://benjaminman.itch.io/the-reprint" class="project-action">
+                                    <i class="fa-brands fa-itch-io" aria-hidden="true"></i>
+                                    <span>itch.io</span>
+                                </a>
+                                <a href="https://github.com/zhaotjson/The-Reprint-Fiat-Jam-Game-" class="project-action">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    <span>Github</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="project">
@@ -258,8 +318,20 @@
                             <h3 style="margin-top: 0; margin-bottom: 0;">Antonio</h3>
                             <i>Submission for Ludum Dare 56 (Theme: Tiny Creatures)</i>
                             <p style="margin-top: 5px;">A game built in 72 hours about a small ant in a world full of spiders.</p>
-                            <p style="margin-top: 5px; margin-bottom: 0;">Built with: Unity, C#</p>
-                            <p><a href="https://benjaminman.itch.io/antonio">itch.io</a>  |  <a href="https://github.com/benman604/ldjam56/">Github</a></p>
+                            <div class="tech-chips" aria-label="Built with Unity and C#">
+                                <span class="tech-chip">Unity</span>
+                                <span class="tech-chip">C#</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://benjaminman.itch.io/antonio" class="project-action">
+                                    <i class="fa-brands fa-itch-io" aria-hidden="true"></i>
+                                    <span>itch.io</span>
+                                </a>
+                                <a href="https://github.com/benman604/ldjam56/" class="project-action">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    <span>Github</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="project">
@@ -267,11 +339,22 @@
                         <div class="project-info">
                             <h3 style="margin-top: 0; margin-bottom: 0;">dirdle</h3>
                             <p style="margin-top: 5px;">Like Wordle, but with arrows and uncertain green tiles.</p>
-                            <p style="margin-top: 5px; margin-bottom: 0;">Built with: Svelte, Javascript</p>
-                            <p><a href="https://dirdle.vercel.app/">Try it out</a>  |  <a href="https://github.com/benman604/dirdle">Github</a></p>
+                            <div class="tech-chips" aria-label="Built with Svelte and Javascript">
+                                <span class="tech-chip">Svelte</span>
+                                <span class="tech-chip">Javascript</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://dirdle.vercel.app/" class="project-action">
+                                    <span>Try it out</span>
+                                </a>
+                                <a href="https://github.com/benman604/dirdle" class="project-action">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    <span>Github</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-            </div>
+                </div>
 
             </div>
         </div>

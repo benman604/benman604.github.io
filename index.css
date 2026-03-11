@@ -553,7 +553,7 @@ button:disabled {
 }
 
 .project img {
-    width: 200px;
+    width: 250px;
     object-fit: contain;
 }
 
@@ -564,4 +564,55 @@ button:disabled {
 
 .project h3 {
     margin-top: 0; margin-bottom: 0;
+}
+
+.tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.tech-chip {
+    display: inline-flex;
+    border-radius: 50px;
+    align-items: center;
+    padding: 2px 8px;
+    /* border: 1px solid var(--outline); */
+    background: var(--dark-link);
+    color: var(--light-text);
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.project-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 6px;
+    border: 1px solid var(--outline);
+    color: var(--text);
+    background-color: transparent;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    font-size: small;
+}
+
+.project-action:hover {
+    background-color: var(--highlight);
+    border-color: var(--highlight);
+    color: black;
+    text-decoration: none;
+}
+
+.project-action i {
+    font-size: 0.9rem;
 }
