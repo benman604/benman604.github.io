@@ -52,7 +52,13 @@
                     <div class="socials">
                         <a href="https://github.com/benman604" class="fa-brands fa-github"></a>
                         <a href="https://www.linkedin.com/in/benjamin-man-839b69196/" class="fa-brands fa-linkedin"></a>
-                        <a class="fa-solid fa-envelope" id="clickmail" href="mailto:8k1x54yhv@relay.firefox.com"></a>
+                        <a class="fa-solid fa-envelope" id="clickmail" href="mailto:x6hj5gjcw@mozmail.com"></a>
+
+                        <script>
+                            const mail_user = [...'ned1uv2xd'].map(c=>String.fromCharCode(c.charCodeAt(0)^2)).join('')
+                            const mail_domain = "mozmail.com"
+                            document.getElementById("clickmail").href = `mailto:${mail_user}@${mail_domain}`;
+                        </script>
                     </div>
                     <br>
                 </div> <!-- stage -->
