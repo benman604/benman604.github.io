@@ -43,6 +43,11 @@ let visited = new Set()
 let waitOneMsEvery = 10;
 const _waitOneMsEvery = 10;
 
+let leftOfScreen = 410;
+let rightMargin = 90;
+let topOfScreen = 53;
+let bottomOfScreen = 437;
+
 function miToDegLat(mi) {
   return mi / 69.172;
 }
@@ -210,6 +215,13 @@ async function setup() {
     canvasHeight = window.innerHeight - 564;
     windowWidthMiles = 10;
   }
+  
+  if (windowWidth < 850) {
+    leftOfScreen = 0;
+    rightMargin = 0;
+    topOfScreen = 0;
+    bottomOfScreen = canvasHeight;
+  }
 
   let canvas = createCanvas(w, canvasHeight);
   canvas.parent('sketch');
@@ -285,6 +297,14 @@ function draw() {
     }
     endShape();
   }
+
+  // Navigation bound guides
+  // stroke(highlightColor.r, highlightColor.g, highlightColor.b);
+  // strokeWeight(1);
+  // line(leftOfScreen, 0, leftOfScreen, height);
+  // line(width - rightMargin, 0, width - rightMargin, height);
+  // line(0, topOfScreen, width, topOfScreen);
+  // line(0, bottomOfScreen, width, bottomOfScreen);
 }
   
 function drawHighways() {
@@ -488,7 +508,7 @@ function findNearestNode(lat, lon) {
   return nearestNode;
 }
 
-const leftOfScreen = 368;
+
 async function selectRandomEndpoints() {
   let nodeIds = Array.from(nodesMap.keys());
   if (nodeIds.length < 2) return;
@@ -497,13 +517,26 @@ async function selectRandomEndpoints() {
   do {
     startIndex = Math.floor(Math.random() * nodeIds.length);
     times++;
-  } while (nodesMap.get(nodeIds[startIndex]).x < leftOfScreen && times < 100);
+  } while (
+    nodesMap.get(nodeIds[startIndex]).x < leftOfScreen ||
+    nodesMap.get(nodeIds[startIndex]).x > width - rightMargin ||
+    nodesMap.get(nodeIds[startIndex]).y < topOfScreen ||
+    nodesMap.get(nodeIds[startIndex]).y > bottomOfScreen ||
+    times < 1000
+  );
   let endIndex;
   times = 0;
   do {
     endIndex = Math.floor(Math.random() * nodeIds.length);
     times++;
-  } while (endIndex === startIndex || nodesMap.get(nodeIds[endIndex]).x < leftOfScreen && times < 100);
+  } while (
+    endIndex === startIndex ||
+    nodesMap.get(nodeIds[endIndex]).x < leftOfScreen ||
+    nodesMap.get(nodeIds[endIndex]).x > width - rightMargin ||
+    nodesMap.get(nodeIds[endIndex]).y < topOfScreen ||
+    nodesMap.get(nodeIds[endIndex]).y > bottomOfScreen || 
+    times < 1000
+  );
 
   startSelection.nodeId = nodeIds[startIndex];
   endSelection.nodeId = nodeIds[endIndex];
